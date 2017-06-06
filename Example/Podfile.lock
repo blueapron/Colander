@@ -1,0 +1,28 @@
+PODS:
+  - CalendarView (0.1.0):
+    - SnapKit (~> 3.2.0)
+    - SwiftDate (~> 4.1.1)
+  - Nimble (5.1.1)
+  - Quick (1.0.0)
+  - SnapKit (3.2.0)
+  - SwiftDate (4.1.1)
+
+DEPENDENCIES:
+  - CalendarView (from `../`)
+  - Nimble (~> 5.1.1)
+  - Quick (~> 1.0.0)
+
+EXTERNAL SOURCES:
+  CalendarView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CalendarView: 03ec79e0a106d86bccbd0a5ad52bb8afd2d1a15e
+  Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
+  Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  SwiftDate: ae615078806a322183e5f64e02e80ca8d939bf48
+
+PODFILE CHECKSUM: 909913b866c37af2d2edd0ddd5698eb1f1a54001
+
+COCOAPODS: 1.2.1
