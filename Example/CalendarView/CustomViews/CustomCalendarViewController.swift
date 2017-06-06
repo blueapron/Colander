@@ -61,7 +61,6 @@ extension CustomCalendarViewController: CalendarViewDelegate {
     }
 
     func calendar(_ calendar: CalendarView, willDisplayCell cell: UICollectionViewCell, at indexPath: IndexPath, forDate date: Date) {
-        print(date)
         guard let dayCell = cell as? SpecializedDayCell else { return }
         dayCell.todayBackground.isHidden = !date.isToday
     }
