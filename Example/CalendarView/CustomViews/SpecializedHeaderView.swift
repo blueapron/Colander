@@ -11,8 +11,14 @@ import SnapKit
 import UIKit
 
 class SpecializedHeaderView: UICollectionReusableView, Dated {
-    var date: Date = Date.distantPast {
+    var date: Date? {
         didSet {
+            guard let date = date else {
+                monthLabel.text = ""
+                yearLabel.text = ""
+                return
+            }
+
             let formatter = DateFormatter()
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
 

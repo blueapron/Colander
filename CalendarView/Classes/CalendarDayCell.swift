@@ -1,6 +1,11 @@
 open class CalendarDayCell: UICollectionViewCell, Dated {
-    open var date: Date = Date.distantPast {
+    open var date: Date? {
         didSet {
+            guard let date = date else {
+                dateLabel.text = ""
+                return
+            }
+
             dateLabel.text = String(date.day)
         }
     }
@@ -24,6 +29,6 @@ open class CalendarDayCell: UICollectionViewCell, Dated {
     open override func prepareForReuse() {
         super.prepareForReuse()
         dateLabel.text = ""
-        date = Date.distantPast
+        date = nil
     }
 }

@@ -20,7 +20,7 @@ public extension CalendarViewDataSource {
 }
 
 public protocol Dated {
-    var date: Date { get set }
+    var date: Date? { get set }
 }
 
 public protocol CalendarViewDelegate: class {
@@ -226,8 +226,8 @@ extension CalendarView: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let datedCell = cell as? Dated else { return }
-        delegate?.calendar(self, willDisplayCell: cell, at: indexPath, forDate: datedCell.date)
+        guard let datedCell = cell as? Dated, let date = datedCell.date else { return }
+        delegate?.calendar(self, willDisplayCell: cell, at: indexPath, forDate: date)
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -294,19 +294,22 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
     }
 
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        guard let delegate = delegate, let cell = collectionView.cellForItem(at: indexPath), let datedCell = cell as? Dated else { return false }
-        return delegate.calendar(self, shouldSelectCellAt: datedCell.date)
+        guard let delegate = delegate,
+            let cell = collectionView.cellForItem(at: indexPath),
+            let datedCell = cell as? Dated,
+            let date = datedCell.date else { return false }
+        return delegate.calendar(self, shouldSelectCellAt: date)
     }
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-        if let datedCell = cell as? Dated {
-            delegate?.calendar(self, didSelectCell: cell, forDate: datedCell.date)
+        if let datedCell = cell as? Dated, let date = datedCell.date {
+            delegate?.calendar(self, didSelectCell: cell, forDate: date)
         }
     }
 
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath), let datedCell = cell as? Dated else { return }
-        delegate?.calendar(self, didDeselectCell: cell, forDate: datedCell.date)
+        guard let cell = collectionView.cellForItem(at: indexPath), let datedCell = cell as? Dated, let date = datedCell.date else { return }
+        delegate?.calendar(self, didDeselectCell: cell, forDate: date)
     }
 }

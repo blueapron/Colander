@@ -9,8 +9,13 @@
 import CalendarView
 
 class SpecializedDayCell: UICollectionViewCell, Dated {
-    var date: Date = Date.distantPast {
+    var date: Date? {
         didSet {
+            guard let date = date else {
+                dateLabel.text = ""
+                return
+            }
+
             dateLabel.text = String(date.day)
         }
     }

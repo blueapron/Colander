@@ -12,14 +12,13 @@ import SwiftDate
 import UIKit
 
 class BasicCalendarViewController: UIViewController {
-
     let calendarView = CalendarView()
 
     init() {
         super.init(nibName: nil, bundle: nil)
         title = "Basic Calendar View"
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -51,5 +50,4 @@ extension BasicCalendarViewController: CalendarViewDataSource {
 }
 
 extension BasicCalendarViewController: CalendarViewDelegate {
-
 }

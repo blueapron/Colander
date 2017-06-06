@@ -18,7 +18,7 @@ class CustomCalendarViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         title = "Advanced Calendar View"
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -61,6 +61,7 @@ extension CustomCalendarViewController: CalendarViewDelegate {
     }
 
     func calendar(_ calendar: CalendarView, willDisplayCell cell: UICollectionViewCell, at indexPath: IndexPath, forDate date: Date) {
+        print(date)
         guard let dayCell = cell as? SpecializedDayCell else { return }
         dayCell.todayBackground.isHidden = !date.isToday
     }
