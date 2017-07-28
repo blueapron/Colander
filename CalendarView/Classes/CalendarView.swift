@@ -112,7 +112,7 @@ public class CalendarView: UIView {
     var width: CGFloat = 0
     var insets: CGFloat = 0
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.createSubviews()
     }

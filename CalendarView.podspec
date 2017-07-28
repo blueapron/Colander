@@ -21,24 +21,16 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/Bryan Oltman/CalendarView'
+  s.homepage         = 'https://github.com/blueapron/CalendarView'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Bryan Oltman' => 'bryan.oltman@blueapron.com' }
-  s.source           = { :git => 'https://github.com/Bryan Oltman/CalendarView.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => 'https://github.com/blueapron/CalendarView', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'CalendarView/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'CalendarView' => ['CalendarView/Assets/*.png']
-  # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'Reusable', '~> 4.0.0'
   s.dependency 'SnapKit', '~> 3.2.0'
   s.dependency 'SwiftDate', '~> 4.1.1'
 end
