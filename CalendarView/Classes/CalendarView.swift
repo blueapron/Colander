@@ -25,7 +25,6 @@ public protocol Dated {
 
 public protocol CalendarViewDelegate: class {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
-    func calendar(_ calendar: CalendarView, cell: UICollectionViewCell, at indexPath: IndexPath, forDate date: Date)
     func calendar(_ calendar: CalendarView, shouldSelectCellAt date: Date) -> Bool
     func calendar(_ calendar: CalendarView, didSelectCell cell: UICollectionViewCell, forDate date: Date)
     func calendar(_ calendar: CalendarView, didDeselectCell cell: UICollectionViewCell, forDate date: Date)
@@ -34,9 +33,6 @@ public protocol CalendarViewDelegate: class {
 
 public extension CalendarViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    }
-
-    func calendar(_ calendar: CalendarView, cell: UICollectionViewCell, at indexPath: IndexPath, forDate date: Date) {
     }
 
     func calendar(_ calendar: CalendarView, shouldSelectCellAt date: Date) -> Bool {
@@ -232,7 +228,7 @@ extension CalendarView: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath)
-        guard let currentMonthInfo = monthInfos[indexPath.section] else {
+        guard let currentMonthInfo = monthInfos[indexPath.section], var datedCell = dayCell as? Dated else {
             return dayCell
         }
 
@@ -251,23 +247,13 @@ extension CalendarView: UICollectionViewDataSource {
         }
 
         guard inCurrentMonth else {
-            dayCell.isHidden = true
-            return dayCell
+            datedCell.date = nil
+            return datedCell
         }
 
-        dayCell.isHidden = false
         let cellDate = currentMonthInfo.startDate + (item - offset).days
-        if var datedCell = dayCell as? Dated {
-            datedCell.date = cellDate
-        }
-
-        if highlightCurrentDate {
-            // dayCell.state = dayCell.date.isToday ? .selected : .base
-        }
-
-        delegate?.calendar(self, cell: dayCell, at: indexPath, forDate: cellDate)
-
-        return dayCell
+        datedCell.date = cellDate
+        return datedCell
     }
 
     public func collectionView(_ collectionView: UICollectionView,
