@@ -248,12 +248,12 @@ extension CalendarView: UICollectionViewDataSource {
 
         guard inCurrentMonth else {
             datedCell.date = nil
-            return datedCell
+            return dayCell
         }
 
         let cellDate = currentMonthInfo.startDate + (item - offset).days
         datedCell.date = cellDate
-        return datedCell
+        return dayCell
     }
 
     public func collectionView(_ collectionView: UICollectionView,
