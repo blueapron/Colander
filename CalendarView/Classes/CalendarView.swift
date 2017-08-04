@@ -151,7 +151,6 @@ public class CalendarView: UIView {
 
     public func register<T: UICollectionViewCell>(cellType: T.Type) where T: Dated {
         collectionView.register(cellType, forCellWithReuseIdentifier: "DayCell")
-        // collectionView.register(cellType: cellType, wi)
     }
 
     var headerHeight = CGFloat(0)
@@ -248,11 +247,13 @@ extension CalendarView: UICollectionViewDataSource {
 
         guard inCurrentMonth else {
             datedCell.date = nil
+            dayCell.isUserInteractionEnabled = false
             return dayCell
         }
 
         let cellDate = currentMonthInfo.startDate + (item - offset).days
         datedCell.date = cellDate
+        dayCell.isUserInteractionEnabled = true
         return dayCell
     }
 
