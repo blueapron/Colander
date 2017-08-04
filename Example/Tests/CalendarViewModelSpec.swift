@@ -21,11 +21,11 @@ class CalendarViewModelSpec: QuickSpec {
         describe("numberOfSectionsNeededFor(startDate: endDate:)") {
             // TODO
         }
-        
+
         describe("indexPath(from:)") {
             // TODO
         }
-        
+
         describe("date(at:)") {
             // TODO
         }

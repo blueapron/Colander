@@ -16,6 +16,7 @@
 		6253CF851ECB6473000907F4 /* CustomCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253CF841ECB6473000907F4 /* CustomCalendarViewController.swift */; };
 		629D1B8E1F351D01004657AB /* CalendarViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629D1B8C1F351CD3004657AB /* CalendarViewModelSpec.swift */; };
 		629D1B931F351E3F004657AB /* MonthInfoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629D1B911F351E39004657AB /* MonthInfoSpec.swift */; };
+		629D1B991F352653004657AB /* Date+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629D1B981F352653004657AB /* Date+Mock.swift */; };
 		629E8A841F34C434004A592B /* MultiSelectionCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E8A831F34C434004A592B /* MultiSelectionCalendarViewController.swift */; };
 		62DDC06C1ECB8ABC0063E7D9 /* CalendarMonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC06B1ECB8ABC0063E7D9 /* CalendarMonthHeaderView.swift */; };
 		62DDC06E1ECB8DB10063E7D9 /* SpecializedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC06D1ECB8DB10063E7D9 /* SpecializedHeaderView.swift */; };
@@ -49,6 +50,7 @@
 		6253CF841ECB6473000907F4 /* CustomCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalendarViewController.swift; sourceTree = "<group>"; };
 		629D1B8C1F351CD3004657AB /* CalendarViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModelSpec.swift; sourceTree = "<group>"; };
 		629D1B911F351E39004657AB /* MonthInfoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthInfoSpec.swift; sourceTree = "<group>"; };
+		629D1B981F352653004657AB /* Date+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Mock.swift"; sourceTree = "<group>"; };
 		629E8A831F34C434004A592B /* MultiSelectionCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSelectionCalendarViewController.swift; sourceTree = "<group>"; };
 		62DDC06B1ECB8ABC0063E7D9 /* CalendarMonthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMonthHeaderView.swift; sourceTree = "<group>"; };
 		62DDC06D1ECB8DB10063E7D9 /* SpecializedHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecializedHeaderView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				629D1B8C1F351CD3004657AB /* CalendarViewModelSpec.swift */,
+				629D1B981F352653004657AB /* Date+Mock.swift */,
 				629D1B911F351E39004657AB /* MonthInfoSpec.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -414,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				629D1B8E1F351D01004657AB /* CalendarViewModelSpec.swift in Sources */,
+				629D1B991F352653004657AB /* Date+Mock.swift in Sources */,
 				629D1B931F351E3F004657AB /* MonthInfoSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,6 +580,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CalendarView_Example.app/CalendarView_Example";
 			};
 			name = Debug;
 		};
@@ -592,6 +597,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CalendarView_Example.app/CalendarView_Example";
 			};
 			name = Release;
 		};

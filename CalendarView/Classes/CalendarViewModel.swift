@@ -38,7 +38,7 @@ class CalendarViewModel {
     static func makeMonthInfos(startDate: Date, endDate: Date) throws -> [MonthInfo] {
         guard let monthStartDate = startDate.beginningOfMonth else { return [] }
         let sections = (0..<(numberOfSectionsNeededFor(startDate: startDate, endDate: endDate)))
-        return try sections.map { try MonthInfo(startDate: monthStartDate + $0.months) }
+        return try sections.map { try MonthInfo(forMonthContaining: monthStartDate + $0.months) }
     }
 
     func date(at indexPath: IndexPath) -> Date? {
