@@ -19,10 +19,6 @@ public extension CalendarViewDataSource {
     }
 }
 
-public protocol Dated {
-    var date: Date? { get set }
-}
-
 public protocol CalendarViewDelegate: class {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     func calendar(_ calendar: CalendarView, shouldSelectCellAt date: Date) -> Bool
@@ -49,26 +45,6 @@ public extension CalendarViewDelegate {
     }
 }
 
-fileprivate struct MonthInfo {
-    let startDate: Date
-    let firstDayWeekdayIndex: Int
-    let numberOfDaysInMonth: Int
-
-    init?(startDate: Date) {
-        guard let numberOfDaysInMonth = Calendar.gregorian.range(of: .day, in: .month, for: startDate)?.count else {
-            return nil
-        }
-
-        self.startDate = startDate
-        self.firstDayWeekdayIndex = Calendar.gregorian.component(.weekday, from: startDate) - 1 // 1-indexed to 0-indexed
-        self.numberOfDaysInMonth = numberOfDaysInMonth
-    }
-
-    func contains(index: Int) -> Bool {
-        let range = firstDayWeekdayIndex..<(firstDayWeekdayIndex + numberOfDaysInMonth)
-        return range.contains(index)
-    }
-}
 
 // based on https://github.com/mmick66/CalendarView
 
@@ -76,20 +52,30 @@ public class CalendarView: UIView {
     public weak var dataSource: CalendarViewDataSource? {
         didSet {
             guard let dataSource = dataSource else { return }
-            startDate = dataSource.startDate
-            endDate = dataSource.endDate
+            viewModel = try? CalendarViewModel(startDate: dataSource.startDate, endDate: dataSource.endDate)
             collectionView.reloadData()
         }
     }
 
     public weak var delegate: CalendarViewDelegate?
-    var highlightCurrentDate: Bool = true
-    var allowMultipleSelection: Bool = false
 
-    fileprivate let daysPerWeek = Calendar.gregorian.weekdaySymbols.count
-    fileprivate var startDate = Date()
-    fileprivate var endDate = Date()
-    fileprivate var monthInfos: [Int: MonthInfo] = [:]
+    var viewModel: CalendarViewModel?
+
+    public var allowsMultipleSelection: Bool {
+        get {
+            return collectionView.allowsMultipleSelection
+        }
+        set {
+            collectionView.allowsMultipleSelection = newValue
+        }
+    }
+
+    public private(set) var selectedDates: [Date] = []
+
+    public func select(date: Date) {
+        selectedDates.append(date)
+        collectionView.selectItem(at: viewModel?.indexPath(from: date), animated: false, scrollPosition: [])
+    }
 
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -136,6 +122,11 @@ public class CalendarView: UIView {
     public override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         setNeedsLayout()
+        
+        let indexPaths = selectedDates.map { viewModel?.indexPath(from: $0) }
+        for indexPath in indexPaths {
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+        }
     }
 
     public override func layoutSubviews() {
@@ -162,62 +153,19 @@ public class CalendarView: UIView {
         view.layoutIfNeeded()
         headerHeight = view.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
     }
+
+    public func selectCell(at indexPath: IndexPath) {
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
+    }
 }
 
 extension CalendarView: UICollectionViewDataSource {
-    func firstDisplayDate(from startDate: Date, showLeadingDays: Bool) -> Date {
-        // EffectiveStartDate is the beginning of the week including startDate
-        if showLeadingDays {
-            return startDate.beginningOfMonth ?? Date()
-        } else {
-            return startDate - (startDate.weekday - 1).days
-        }
-    }
-
-    func numberOfSections(startDate: Date, endDate: Date) -> Int {
-        let monthSpan = endDate.month - startDate.month
-        let yearSpan = endDate.year - startDate.year
-        return yearSpan * 12 + monthSpan + 1
-    }
-
-    func numberOfItems(in section: Int) -> Int {
-        guard let monthStartDate = startDate.beginningOfMonth, let monthInfo = MonthInfo(startDate: monthStartDate + section.months) else {
-            return 0
-        }
-
-        monthInfos[section] = monthInfo
-        var numberOfDays = monthInfo.numberOfDaysInMonth
-        var offset = monthInfo.firstDayWeekdayIndex
-        let sectionCount = numberOfSections(startDate: startDate, endDate: endDate)
-        let effectiveStartDate = firstDisplayDate(from: startDate, showLeadingDays: dataSource?.showsLeadingWeeks == true)
-        // If we're in our first month, don't show weeks leading up to but not including startDate
-        if dataSource?.showsLeadingWeeks == false && startDate.isSameMonthAs(effectiveStartDate) && section == 0 {
-            numberOfDays -= effectiveStartDate.day
-            offset = 1
-        }
-
-        if dataSource?.showsTrailingWeeks == false && section == sectionCount - 1 {
-            let daysAfterEndDate = daysPerWeek - endDate.weekday
-            numberOfDays = endDate.day + daysAfterEndDate
-        }
-
-        let requiredRows = ceil((Double(numberOfDays) + Double(offset)) / Double(daysPerWeek))
-
-        // We display full rows for every week we display, even if the current month starts or ends before the week.
-        return Int(requiredRows) * daysPerWeek
-    }
-
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard dataSource != nil else { return 0 }
-
-        // Check if the dates are in correct order
-        guard startDate < endDate else { return 0 }
-
-        return numberOfSections(startDate: startDate, endDate: endDate)
+        return viewModel?.monthInfos.count ?? 0
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfItems(in: section)
+        return viewModel?.numberOfItems(in: section) ?? 0
     }
 
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -227,33 +175,13 @@ extension CalendarView: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath)
-        guard let currentMonthInfo = monthInfos[indexPath.section], var datedCell = dayCell as? Dated else {
+        guard var datedCell = dayCell as? Dated else {
             return dayCell
         }
 
-        var offset = currentMonthInfo.firstDayWeekdayIndex
-        var item = indexPath.item
-        var inCurrentMonth = false
-        let effectiveStartDate = firstDisplayDate(from: startDate, showLeadingDays: dataSource?.showsLeadingWeeks == true)
-
-        // if we're in our first month, don't show weeks leading up to but not including startDate
-        if dataSource?.showsLeadingWeeks == false && startDate.isSameMonthAs(effectiveStartDate) && indexPath.section == 0 {
-            item += effectiveStartDate.day - 1
-            offset = 0
-            inCurrentMonth = item < currentMonthInfo.numberOfDaysInMonth
-        } else {
-            inCurrentMonth = currentMonthInfo.contains(index: item)
-        }
-
-        guard inCurrentMonth else {
-            datedCell.date = nil
-            dayCell.isUserInteractionEnabled = false
-            return dayCell
-        }
-
-        let cellDate = currentMonthInfo.startDate + (item - offset).days
-        datedCell.date = cellDate
-        dayCell.isUserInteractionEnabled = true
+        let date = viewModel?.date(at: indexPath)
+        datedCell.date = date
+        dayCell.isUserInteractionEnabled = date != nil
         return dayCell
     }
 
@@ -267,7 +195,7 @@ extension CalendarView: UICollectionViewDataSource {
                                viewForSupplementaryElementOfKind kind: String,
                                at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath)
-        if let currentMonthInfo = monthInfos[indexPath.section], var headerView = headerView as? Dated {
+        if let currentMonthInfo = viewModel?.monthInfos[indexPath.section], var headerView = headerView as? Dated {
             headerView.date = currentMonthInfo.startDate
         }
 

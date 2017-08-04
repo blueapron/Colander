@@ -15,7 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let tabController = UITabBarController()
-        tabController.viewControllers = [BasicCalendarViewController(), CustomCalendarViewController()]
+        tabController.viewControllers = [BasicCalendarViewController(),
+                                         CustomCalendarViewController(),
+                                         MultiSelectionCalendarViewController()]
         window = UIWindow()
         window?.rootViewController = tabController
         window?.makeKeyAndVisible()
