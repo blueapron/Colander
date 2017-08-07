@@ -5,16 +5,16 @@ import UIKit
 public protocol CalendarViewDataSource: class {
     var startDate: Date { get }
     var endDate: Date { get }
-    var showsLeadingWeeks: Bool { get }
-    var showsTrailingWeeks: Bool { get }
+    var showLeadingWeeks: Bool { get }
+    var showTrailingWeeks: Bool { get }
 }
 
 public extension CalendarViewDataSource {
-    var showsLeadingWeeks: Bool {
+    var showLeadingWeeks: Bool {
         return true
     }
 
-    var showsTrailingWeeks: Bool {
+    var showTrailingWeeks: Bool {
         return true
     }
 }
@@ -52,7 +52,9 @@ public class CalendarView: UIView {
     public weak var dataSource: CalendarViewDataSource? {
         didSet {
             guard let dataSource = dataSource else { return }
-            viewModel = try? CalendarViewModel(startDate: dataSource.startDate, endDate: dataSource.endDate)
+            viewModel = try? CalendarViewModel(startDate: dataSource.startDate, endDate: dataSource.endDate,
+                                               showLeadingWeeks: dataSource.showLeadingWeeks,
+                                               showTrailingWeeks: dataSource.showTrailingWeeks)
             collectionView.reloadData()
         }
     }
@@ -73,8 +75,25 @@ public class CalendarView: UIView {
     public private(set) var selectedDates: [Date] = []
 
     public func select(date: Date) {
-        selectedDates.append(date)
+        selectedDates.append(date.startOfDay)
         collectionView.selectItem(at: viewModel?.indexPath(from: date), animated: false, scrollPosition: [])
+    }
+
+    public func deselect(date: Date) {
+        guard let indexPath = viewModel?.indexPath(from: date.startOfDay) else {
+            return
+        }
+
+        if let index = selectedDates.index(of: date.startOfDay) {
+            selectedDates.remove(at: index)
+        }
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
+    
+    public func select(dates: [Date]) {
+        for date in dates {
+            select(date: date)
+        }
     }
 
     let collectionView: UICollectionView = {
@@ -165,7 +184,7 @@ extension CalendarView: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.numberOfItems(in: section) ?? 0
+        return viewModel?.dates(in: section).count ?? 0
     }
 
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -219,12 +238,14 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         if let datedCell = cell as? Dated, let date = datedCell.date {
+            select(date: date)
             delegate?.calendar(self, didSelectCell: cell, forDate: date)
         }
     }
 
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath), let datedCell = cell as? Dated, let date = datedCell.date else { return }
+        deselect(date: date)
         delegate?.calendar(self, didDeselectCell: cell, forDate: date)
     }
 }

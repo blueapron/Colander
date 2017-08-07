@@ -1,12 +1,21 @@
+import SwiftDate
+
 extension Calendar {
     static let gregorian = Calendar(identifier: Calendar.Identifier.gregorian)
 }
 
 extension Date {
-    var beginningOfMonth: Date? {
-        var firstDayOfStartMonth = Calendar.gregorian.dateComponents( [.era, .year, .month], from: self)
-        firstDayOfStartMonth.day = 1
-        return Calendar.gregorian.date(from: firstDayOfStartMonth)
+    var beginningOfMonth: Date {
+        return self.startOf(component: .month)
+    }
+    
+    var beginningOfWeek: Date {
+        return self.startOf(component: .weekOfMonth)
+    }
+
+    var endOfWeek: Date {
+        let numWeekdays = Calendar.gregorian.weekdaySymbols.count
+        return self + (numWeekdays - self.weekday).days
     }
 
     func isSameMonthAs(_ otherDate: Date) -> Bool {

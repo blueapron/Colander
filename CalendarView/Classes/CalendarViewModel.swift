@@ -9,6 +9,11 @@
 import Foundation
 import SwiftDate
 
+enum DateError: Error {
+    case Generic(String)
+    case InvalidDateOrdering
+}
+
 public protocol Dated {
     var date: Date? { get set }
 }
@@ -17,17 +22,9 @@ class CalendarViewModel {
     let startDate: Date
     let endDate: Date
     let monthInfos: [MonthInfo]
-    let showLeadingDays: Bool
-    let showTrailingDays: Bool
+    let showLeadingWeeks: Bool
+    let showTrailingWeeks: Bool
     fileprivate let daysPerWeek = Calendar.gregorian.weekdaySymbols.count
-
-    init(startDate: Date, endDate: Date, showLeadingDays: Bool = true, showTrailingDays: Bool = true) throws {
-        self.startDate = startDate
-        self.endDate = endDate
-        self.showLeadingDays = showLeadingDays
-        self.showTrailingDays = showTrailingDays
-        self.monthInfos = try CalendarViewModel.makeMonthInfos(startDate: startDate, endDate: endDate)
-    }
 
     static func numberOfSectionsNeededFor(startDate: Date, endDate: Date) -> Int {
         let monthSpan = endDate.month - startDate.month
@@ -36,64 +33,83 @@ class CalendarViewModel {
     }
 
     static func makeMonthInfos(startDate: Date, endDate: Date) throws -> [MonthInfo] {
-        guard let monthStartDate = startDate.beginningOfMonth else { return [] }
+        let monthStartDate = startDate.beginningOfMonth
         let sections = (0..<(numberOfSectionsNeededFor(startDate: startDate, endDate: endDate)))
         return try sections.map { try MonthInfo(forMonthContaining: monthStartDate + $0.months) }
     }
 
-    func date(at indexPath: IndexPath) -> Date? {
-        let monthInfo = monthInfos[indexPath.section]
-        var dayOffset = monthInfo.firstDayWeekdayIndex
-        var numberOfDays = monthInfo.numberOfDaysInMonth
-        if !showLeadingDays && indexPath.section == 0 {
-            numberOfDays -= firstDisplayDate(for: monthInfo, showLeadingDays: showLeadingDays).day
-            dayOffset = 1
-        }
-        let dayDifference = indexPath.item - dayOffset
-        if dayDifference < 0 || dayDifference >= monthInfo.numberOfDaysInMonth {
-            return nil
+    init(startDate: Date, endDate: Date, showLeadingWeeks: Bool = true, showTrailingWeeks: Bool = true) throws {
+        if startDate > endDate && !startDate.isInSameDayOf(date: endDate) {
+            throw DateError.InvalidDateOrdering
         }
 
-        return monthInfo.startDate + (indexPath.item - dayOffset).days
+        self.startDate = startDate
+        self.endDate = endDate
+        self.showLeadingWeeks = showLeadingWeeks
+        self.showTrailingWeeks = showTrailingWeeks
+        self.monthInfos = try CalendarViewModel.makeMonthInfos(startDate: startDate, endDate: endDate)
+    }
+
+    func date(at indexPath: IndexPath) -> Date? {
+        return self.dates(in: indexPath.section)[indexPath.item]
     }
 
     func indexPath(from date: Date) -> IndexPath {
         let section = CalendarViewModel.numberOfSectionsNeededFor(startDate: startDate, endDate: date) - 1
-        let monthInfo = monthInfos[section]
-        return IndexPath(item: date.day + monthInfo.firstDayWeekdayIndex - 1, section: section)
+        let zeroIndexDate = firstDisplayDate(for: section, showLeadingWeeks: showLeadingWeeks)
+        let intervalDiff = date - zeroIndexDate
+        return IndexPath(item: intervalDiff.in(.day) ?? 0, section: section)
     }
 
-    func firstDisplayDate(for monthInfo: MonthInfo, showLeadingDays: Bool) -> Date {
+    func firstDisplayDate(for section: Int, showLeadingWeeks: Bool) -> Date {
         // EffectiveStartDate is the beginning of the week including startDate
-        let startDate = monthInfo.startDate
-        if showLeadingDays {
-            return startDate
+        // aka: what indexPath.item == 0 should map to, usually (but not always) before the start of the month
+        // if leading weeks are being shown
+        let monthInfo = monthInfos[section]
+        let isFirstMonth = section == 0
+        if !showLeadingWeeks && isFirstMonth {
+            // Either the beginning of our startDate's week or the first day of the month, whichever is later
+            return max(startDate.beginningOfWeek, monthInfo.startDate)
         } else {
-            return startDate - (startDate.weekday - 1).days
+            return monthInfo.startDate.beginningOfWeek
         }
     }
 
-    func numberOfItems(in section: Int) -> Int {
+    func dates(in section: Int) -> [Date?] {
         let monthInfo = monthInfos[section]
-        var numberOfDays = monthInfo.numberOfDaysInMonth
-        var offset = monthInfo.firstDayWeekdayIndex
-        let effectiveStartDate = firstDisplayDate(for: monthInfo, showLeadingDays: showLeadingDays)
+        var firstDisplayIndex = monthInfo.firstDayWeekdayIndex
+        var lastDisplayIndex = firstDisplayIndex + (monthInfo.numberOfDaysInMonth - 1)
+        let zeroIndexDate = firstDisplayDate(for: section, showLeadingWeeks: showLeadingWeeks)
         let isFirstMonth = section == 0
-        let isLastMonth = section == monthInfos.count - 1
         // If we're in our first month, don't show weeks leading up to but not including startDate
-        if !showLeadingDays && isFirstMonth {
-            numberOfDays -= effectiveStartDate.day
-            offset = 1
+        if !showLeadingWeeks && isFirstMonth {
+            // Find out which calendar row our start date is in
+            let row = ceil(Double(firstDisplayIndex + zeroIndexDate.day) / Double(daysPerWeek))
+
+            // Subtract that many days from both indexes - those weeks won't be displayed
+            let indexDiff = Int(row - 1) * daysPerWeek
+            firstDisplayIndex -= indexDiff
+            lastDisplayIndex -= indexDiff
         }
 
-        if !showTrailingDays && isLastMonth {
-            let daysAfterEndDate = daysPerWeek - endDate.weekday
-            numberOfDays = endDate.day + daysAfterEndDate
+        let isLastMonth = section == monthInfos.count - 1
+        if !showTrailingWeeks && isLastMonth {
+            // Determine whether the last day to display will change by trimming trailing weeks
+            let dayDifference = (monthInfo.endDate - endDate.endOfWeek).in(.day)
+            lastDisplayIndex -= dayDifference ?? 0
         }
 
-        let requiredRows = ceil((Double(numberOfDays) + Double(offset)) / Double(daysPerWeek))
+        let requiredRows = ceil(Double(lastDisplayIndex) / Double(daysPerWeek))
+        let requiredItems = Int(requiredRows) * daysPerWeek
 
         // We display full rows for every week we display, even if the current month starts or ends before the week.
-        return Int(requiredRows) * daysPerWeek
+        // Return nil for empty day cells
+        return (0..<requiredItems).map { index in
+            if index < max(firstDisplayIndex, 0) || index > lastDisplayIndex {
+                return nil
+            }
+
+            return zeroIndexDate + index.days
+        }
     }
 }
