@@ -51,7 +51,11 @@ class CalendarViewModel {
     }
 
     func date(at indexPath: IndexPath) -> Date? {
-        return self.dates(in: indexPath.section)[indexPath.item]
+        let dates = self.dates(in: indexPath.section)
+        if !(0..<dates.count).contains(indexPath.item) {
+            return nil
+        }
+        return dates[indexPath.item]
     }
 
     func indexPath(from date: Date) -> IndexPath {
@@ -62,17 +66,11 @@ class CalendarViewModel {
     }
 
     func firstDisplayDate(for section: Int, showLeadingWeeks: Bool) -> Date {
-        // EffectiveStartDate is the beginning of the week including startDate
-        // aka: what indexPath.item == 0 should map to, usually (but not always) before the start of the month
-        // if leading weeks are being shown
+        // returns the date that indexPath.item == 0 should map to,
+        // usually (but not always) before the start of the month if leading weeks are being shown
         let monthInfo = monthInfos[section]
         let isFirstMonth = section == 0
-        if !showLeadingWeeks && isFirstMonth {
-            // Either the beginning of our startDate's week or the first day of the month, whichever is later
-            return max(startDate.beginningOfWeek, monthInfo.startDate)
-        } else {
-            return monthInfo.startDate.beginningOfWeek
-        }
+        return (!showLeadingWeeks && isFirstMonth) ? startDate.beginningOfWeek : monthInfo.startDate.beginningOfWeek
     }
 
     func dates(in section: Int) -> [Date?] {
@@ -84,7 +82,7 @@ class CalendarViewModel {
         // If we're in our first month, don't show weeks leading up to but not including startDate
         if !showLeadingWeeks && isFirstMonth {
             // Find out which calendar row our start date is in
-            let row = ceil(Double(firstDisplayIndex + zeroIndexDate.day) / Double(daysPerWeek))
+            let row = ceil(Double(firstDisplayIndex + startDate.day) / Double(daysPerWeek))
 
             // Subtract that many days from both indexes - those weeks won't be displayed
             let indexDiff = Int(row - 1) * daysPerWeek
@@ -95,8 +93,8 @@ class CalendarViewModel {
         let isLastMonth = section == monthInfos.count - 1
         if !showTrailingWeeks && isLastMonth {
             // Determine whether the last day to display will change by trimming trailing weeks
-            let dayDifference = (monthInfo.endDate - endDate.endOfWeek).in(.day)
-            lastDisplayIndex -= dayDifference ?? 0
+            let dayDifference = (monthInfo.endDate - endDate.endOfWeek).in(.day) ?? 0
+            lastDisplayIndex -= (dayDifference - 1)
         }
 
         let requiredRows = ceil(Double(lastDisplayIndex) / Double(daysPerWeek))

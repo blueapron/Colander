@@ -89,7 +89,7 @@ class CalendarViewModelSpec: QuickSpec {
 
             context("when it shows neither leading nor trailing days") {
                 beforeEach {
-                    // Index paths returning dates in section 0: 2 - 32
+                    // Index paths returning dates in section 0: 2 - 6
                     let startDate = Date.mockDateFrom(year: 2017, month: 8, day: 4)
                     let endDate = startDate
                     subject = try! CalendarViewModel(startDate: startDate, endDate: endDate,
@@ -104,10 +104,8 @@ class CalendarViewModelSpec: QuickSpec {
                 it("returns days corresponding to index paths") {
                     expect(subject.date(at: IndexPath(item: 2, section: 0)))
                         .to(equal(Date.mockDateFrom(year: 2017, month: 8, day: 1)))
-                    expect(subject.date(at: IndexPath(item: 10, section: 0)))
-                        .to(equal(Date.mockDateFrom(year: 2017, month: 8, day: 9)))
-                    expect(subject.date(at: IndexPath(item: 32, section: 0)))
-                        .to(equal(Date.mockDateFrom(year: 2017, month: 8, day: 31)))
+                    expect(subject.date(at: IndexPath(item: 10, section: 0))).to(beNil())
+                    expect(subject.date(at: IndexPath(item: 32, section: 0))).to(beNil())
                 }
             }
         }
