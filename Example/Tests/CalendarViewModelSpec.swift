@@ -111,8 +111,28 @@ class CalendarViewModelSpec: QuickSpec {
         }
 
         describe("indexPath(from:)") {
-            it("") {
-                
+            var subject: CalendarViewModel!
+
+            context("when it shows leading and trailing days") {
+                beforeEach {
+                    // Index paths returning dates in section 0: 2 - 32
+                    let startDate = Date.mockDateFrom(year: 2017, month: 8, day: 4)
+                    let endDate = startDate + 3.days
+                    subject = try! CalendarViewModel(startDate: startDate, endDate: endDate,
+                                                     showLeadingWeeks: true, showTrailingWeeks: true)
+                }
+
+                it("Returns appropriate index paths from dates within the month") {
+                    expect(subject.indexPath(from: Date.mockDateFrom(year: 2017, month: 8, day: 5)))
+                        .to(equal(IndexPath(item: 6, section: 0)))
+                    expect(subject.indexPath(from: Date.mockDateFrom(year: 2017, month: 8, day: 30)))
+                        .to(equal(IndexPath(item: 31, section: 0)))
+                }
+
+                it("??") {
+                    expect(subject.indexPath(from: Date.mockDateFrom(year: 2015, month: 8, day: 30)))
+                        .to(beNil())
+                }
             }
         }
 

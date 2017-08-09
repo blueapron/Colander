@@ -51,4 +51,10 @@ class SpecializedDayCell: UICollectionViewCell, Dated {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        dateLabel.text = ""
+        todayBackground.isHidden = true
+    }
 }

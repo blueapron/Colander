@@ -58,8 +58,11 @@ class CalendarViewModel {
         return dates[indexPath.item]
     }
 
-    func indexPath(from date: Date) -> IndexPath {
+    func indexPath(from date: Date) -> IndexPath? {
         let section = CalendarViewModel.numberOfSectionsNeededFor(startDate: startDate, endDate: date) - 1
+        guard section >= 0 && section < monthInfos.count else {
+            return nil
+        }
         let zeroIndexDate = firstDisplayDate(for: section, showLeadingWeeks: showLeadingWeeks)
         let intervalDiff = date - zeroIndexDate
         return IndexPath(item: intervalDiff.in(.day) ?? 0, section: section)
@@ -73,6 +76,14 @@ class CalendarViewModel {
         return (!showLeadingWeeks && isFirstMonth) ? startDate.beginningOfWeek : monthInfo.startDate.beginningOfWeek
     }
 
+     /**
+     Given a collection view section, return an array of dates and nils such that dates[0] maps to the first
+     Sunday displayed, usually within the last few days of the previous month.
+
+     - parameter section: The collection view section representing the month index. 0 is the earliest month displayed.
+
+     - returns: An array of optional dates, where nil represents a day not in the current month
+     */
     func dates(in section: Int) -> [Date?] {
         let monthInfo = monthInfos[section]
         var firstDisplayIndex = monthInfo.firstDayWeekdayIndex
