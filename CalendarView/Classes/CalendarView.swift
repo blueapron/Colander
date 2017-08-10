@@ -63,6 +63,7 @@ public class CalendarView: UIView {
 
     var viewModel: CalendarViewModel?
 
+    /// Wraps collectionView.allowsMultipleSelection
     public var allowsMultipleSelection: Bool {
         get {
             return collectionView.allowsMultipleSelection
@@ -72,29 +73,8 @@ public class CalendarView: UIView {
         }
     }
 
+    /// The currently selected dates
     public private(set) var selectedDates: [Date] = []
-
-    public func select(date: Date) {
-        selectedDates.append(date.startOfDay)
-        collectionView.selectItem(at: viewModel?.indexPath(from: date), animated: false, scrollPosition: [])
-    }
-
-    public func deselect(date: Date) {
-        guard let indexPath = viewModel?.indexPath(from: date.startOfDay) else {
-            return
-        }
-
-        if let index = selectedDates.index(of: date.startOfDay) {
-            selectedDates.remove(at: index)
-        }
-        collectionView.deselectItem(at: indexPath, animated: false)
-    }
-    
-    public func select(dates: [Date]) {
-        for date in dates {
-            select(date: date)
-        }
-    }
 
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -109,9 +89,6 @@ public class CalendarView: UIView {
 
         return collectionView
     }()
-
-    var width: CGFloat = 0
-    var insets: CGFloat = 0
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -150,8 +127,8 @@ public class CalendarView: UIView {
 
     public override func layoutSubviews() {
         super.layoutSubviews()
-        width = floor(collectionView.bounds.width / CGFloat(7))
-        insets = (collectionView.bounds.width - (width * 7)) / 2.0
+        let width = floor(collectionView.bounds.width / CGFloat(7))
+        let insets = (collectionView.bounds.width - (width * 7)) / 2.0
 
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.sectionInset = UIEdgeInsets(top: 0, left: insets, bottom: 0, right: insets)
@@ -159,12 +136,23 @@ public class CalendarView: UIView {
         }
     }
 
+    /**
+     Register a `UICollectionViewCell` subclass (conforming to `Dated`) as a UICollectionViewCell.
+
+     - parameter cellType: The `UICollectionViewCell` (`Dated`-conforming) sublcass to register as a date cell.
+     */
     public func register<T: UICollectionViewCell>(cellType: T.Type) where T: Dated {
         collectionView.register(cellType, forCellWithReuseIdentifier: "DayCell")
     }
 
-    var headerHeight = CGFloat(0)
+    fileprivate var headerHeight = CGFloat(0)
 
+    /**
+     Register a `UICollectionReusableView` subclass (conforming to `Dated`) as a Supplementary View
+
+     - parameter supplementaryViewType: the `UIView` (`Dated`-conforming) subclass to register as Supplementary View
+     - parameter elementKind: The kind of supplementary view to create.
+     */
     public func register<T: UICollectionReusableView>(supplementaryViewType: T.Type, ofKind elementKind: String) where T: Dated {
         collectionView.register(supplementaryViewType, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: "HeaderView")
         let view = supplementaryViewType.init(frame: CGRect.zero)
@@ -173,8 +161,59 @@ public class CalendarView: UIView {
         headerHeight = view.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
     }
 
-    public func selectCell(at indexPath: IndexPath) {
-        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
+    /**
+     Calls select(date:) on the provided dates.
+
+     - parameter dates: the dates to select
+     */
+    public func select(dates: [Date]) {
+        dates.forEach { select(date: $0) }
+    }
+
+    /**
+     Selects the cell corresponding the day component provided Date.
+
+     - parameter date: the date to select
+     */
+    public func select(date: Date) {
+        guard !selectedDates.contains(date) else { return }
+        selectedDates.append(date.startOfDay)
+        collectionView.selectItem(at: viewModel?.indexPath(from: date), animated: false, scrollPosition: [])
+    }
+
+    /**
+     Deselects the cell corresponding the day component provided Date.
+
+     - parameter date: the date to deselect
+     */
+    public func deselect(date: Date) {
+        guard let indexPath = viewModel?.indexPath(from: date.startOfDay) else { return }
+        if let index = selectedDates.index(of: date.startOfDay) {
+            selectedDates.remove(at: index)
+        }
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
+
+    /**
+     Selects the cell at the provided index path
+
+     - parameter indexPath: the index path of the cell to select
+     */
+    public func select(cellAt indexPath: IndexPath) {
+        if let date = viewModel?.date(at: indexPath) {
+            select(date: date)
+        }
+    }
+
+    /**
+     Deselects the cell at the provided index path
+
+     - parameter indexPath: the index path of the cell to deselect
+     */
+    public func deselect(cellAt indexPath: IndexPath) {
+        if let date = viewModel?.date(at: indexPath) {
+            deselect(date: date)
+        }
     }
 }
 

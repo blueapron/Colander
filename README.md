@@ -43,8 +43,6 @@ pod "($POD_NAME)"
 ### `CalendarView`
 A collection view that displays a calendar. Supported functionality:
 
-- `func select(cellAt indexPath: IndexPath)`: Selects the cell at the provided index path
-
 - `func select(date: Date)`: Selects the cell corresponding the `day` component provided `Date`.
 
 - `func select(dates: [Date])`: Calls `select(date:)` on the provided dates.
@@ -52,6 +50,10 @@ A collection view that displays a calendar. Supported functionality:
 - `func deselect(date: Date)`: Deselects the cell corresponding the `day` component provided `Date`.
 
 - `var selectedDates: [Date]`: A read-only array of all the currently selected dates.
+
+- `func select(cellAt indexPath: IndexPath)`: Selects the cell at the provided index path.
+
+- `func deselect(cellAt indexPath: IndexPath)`: Deselects the cell at the provided index path.
 
 ### `CalendarViewDataSource`
 There are only two functions required by the data source: `startDate` and `endDate`. These functions represent the range of time displayed by the CalendarView.
