@@ -19,7 +19,7 @@ pod "($POD_NAME)"
 ## Usage
 
 ```swift
-// In YourViewController.swift...
+    // In YourViewController.swift...
     override func viewDidLoad() {
         let calendarView = CalendarView()
 
@@ -75,7 +75,7 @@ To run the example project:
 The example project contains three different example uses of the CalendarView:
 1. Basic: Uses `CalendarDayCell` packaged with ($POD_NAME) and is generally the most minimal use of ($POD_NAME) possible
 2. Advanced: Uses a custom day cell and header, highlights the day cell for the current day, supports single selection.
-3. Advanceder: Same as Advanced, but with multiple selection. Also demonstrates usage of ($POD_NAME)'s `select(date: )` function.
+3. Advanceder: Same as Advanced, but with multiple selection. Also demonstrates usage of ($POD_NAME)'s `select(date:)` function.
 
 ## Dependencies
 
