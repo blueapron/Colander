@@ -1,19 +1,26 @@
-# CalendarView
+# Colander
 
 [![CI Status](http://img.shields.io/travis/Bryan Oltman/CalendarView.svg?style=flat)](https://travis-ci.org/Bryan Oltman/CalendarView)
 [![Version](https://img.shields.io/cocoapods/v/CalendarView.svg?style=flat)](http://cocoapods.org/pods/CalendarView)
 [![License](https://img.shields.io/cocoapods/l/CalendarView.svg?style=flat)](http://cocoapods.org/pods/CalendarView)
 [![Platform](https://img.shields.io/cocoapods/p/CalendarView.svg?style=flat)](http://cocoapods.org/pods/CalendarView)
 
-($POD_NAME) is a customizable UIView subclass that displays a scrolling calendar view.
+Colander is a customizable UIView subclass that displays a scrolling calendar view.
+
+## Why "Colander"?
+Because Blue Apron is a food company.
+
+Because "Colander" sounds like "calendar". Sort of.
+
+Because "CalendarView" was taken.
 
 ## Installation
 
-($POD_NAME) is available through [CocoaPods](http://cocoapods.org). To install
+Colander is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "($POD_NAME)"
+pod "Colander"
 ```
 
 ## Usage
@@ -79,9 +86,13 @@ The example project contains three different example uses of the CalendarView:
 2. Advanced: Uses a custom day cell and header, highlights the day cell for the current day, supports single selection.
 3. Advanceder: Same as Advanced, but with multiple selection. Also demonstrates usage of ($POD_NAME)'s `select(date:)` function.
 
+## Requirements
+- iOS 9+
+- Xcode 8+
+
 ## Dependencies
 
-($POD_NAME) development was made infinitely more pleasant by [SwiftDate](https://github.com/malcommac/SwiftDate) and [SnapKit](https://github.com/SnapKit/SnapKit).
+Colander development was made infinitely more pleasant by [SwiftDate](https://github.com/malcommac/SwiftDate) and [SnapKit](https://github.com/SnapKit/SnapKit).
 
 ## Author
 
@@ -89,4 +100,4 @@ Bryan Oltman, bryan.oltman@blueapron.com
 
 ## License
 
-($POD_NAME) is available under the MIT license. See the LICENSE file for more info.
+Colander is available under the MIT license. See the LICENSE file for more info.
