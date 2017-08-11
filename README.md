@@ -67,7 +67,7 @@ There are only two functions required by the data source: `startDate` and `endDa
 
 `CalendarViewDataSource` also has two optional functions: `showsLeadingWeeks` and `showsTrailingWeeks`.
 
-- `showsLeadingWeeks`: If `true` (the default behavior), the calendar renders every day in `startDate`'s month. If `false, If `showsLeadingWeeks` is `false`, the earliest date that will be shown is the beginning of `startDate`'s week (i.e., if `startDate` is in the last week of its month and `showsLeadingWeeks` is false, only the week containing `startDate` will be shown).
+- `showsLeadingWeeks`: If `true` (the default behavior), the calendar renders every day in `startDate`'s month. If `false`, the earliest date that will be shown is the beginning of `startDate`'s week (i.e., if `startDate` is in the last week of its month and `showsLeadingWeeks` is false, only the week containing `startDate` will be shown).
 
 - `showsTrailingWeeks`: If `true` (the default behavior), the calendar renders every day in `endDate`'s month. If `false`, the last date that will be rendered is the end of `endDate`'s week. (i.e., if `endDate` is in the first week of its month and `showsTrailingWeeks` is false, only the week containing `endDate` will be shown).
 
