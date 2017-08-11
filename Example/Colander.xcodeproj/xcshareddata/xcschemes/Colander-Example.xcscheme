@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "CalendarView_Example.app"
-               BlueprintName = "CalendarView_Example"
-               ReferencedContainer = "container:CalendarView.xcodeproj">
+               BuildableName = "Colander_Example.app"
+               BlueprintName = "Colander_Example"
+               ReferencedContainer = "container:Colander.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "CalendarView_Tests.xctest"
-               BlueprintName = "CalendarView_Tests"
-               ReferencedContainer = "container:CalendarView.xcodeproj">
+               BuildableName = "Colander_Tests.xctest"
+               BlueprintName = "Colander_Tests"
+               ReferencedContainer = "container:Colander.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "CalendarView_Tests.xctest"
-               BlueprintName = "CalendarView_Tests"
-               ReferencedContainer = "container:CalendarView.xcodeproj">
+               BuildableName = "Colander_Tests.xctest"
+               BlueprintName = "Colander_Tests"
+               ReferencedContainer = "container:Colander.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "CalendarView_Example.app"
-            BlueprintName = "CalendarView_Example"
-            ReferencedContainer = "container:CalendarView.xcodeproj">
+            BuildableName = "Colander_Example.app"
+            BlueprintName = "Colander_Example"
+            ReferencedContainer = "container:Colander.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "CalendarView_Example.app"
-            BlueprintName = "CalendarView_Example"
-            ReferencedContainer = "container:CalendarView.xcodeproj">
+            BuildableName = "Colander_Example.app"
+            BlueprintName = "Colander_Example"
+            ReferencedContainer = "container:Colander.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "CalendarView_Example.app"
-            BlueprintName = "CalendarView_Example"
-            ReferencedContainer = "container:CalendarView.xcodeproj">
+            BuildableName = "Colander_Example.app"
+            BlueprintName = "Colander_Example"
+            ReferencedContainer = "container:Colander.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

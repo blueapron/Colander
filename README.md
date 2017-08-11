@@ -1,16 +1,16 @@
 # Colander
 
-[![CI Status](http://img.shields.io/travis/Bryan Oltman/CalendarView.svg?style=flat)](https://travis-ci.org/Bryan Oltman/CalendarView)
-[![Version](https://img.shields.io/cocoapods/v/CalendarView.svg?style=flat)](http://cocoapods.org/pods/CalendarView)
-[![License](https://img.shields.io/cocoapods/l/CalendarView.svg?style=flat)](http://cocoapods.org/pods/CalendarView)
-[![Platform](https://img.shields.io/cocoapods/p/CalendarView.svg?style=flat)](http://cocoapods.org/pods/CalendarView)
+[![CI Status](http://img.shields.io/travis/BryanOltman/Colander.svg?style=flat)](https://travis-ci.org/BryanOltman/Colander)
+[![Version](https://img.shields.io/cocoapods/v/Colander.svg?style=flat)](http://cocoapods.org/pods/Colander)
+[![License](https://img.shields.io/cocoapods/l/Colander.svg?style=flat)](http://cocoapods.org/pods/Colander)
+[![Platform](https://img.shields.io/cocoapods/p/Colander.svg?style=flat)](http://cocoapods.org/pods/Colander)
 
 Colander is a customizable UIView subclass that displays a scrolling calendar view.
 
 ## Why "Colander"?
 Because Blue Apron is a food company.
 
-Because "Colander" sounds like "calendar". Sort of.
+Because "Colander" sounds like "calendar", sort of.
 
 Because "CalendarView" was taken.
 
@@ -67,7 +67,7 @@ There are only two functions required by the data source: `startDate` and `endDa
 
 `CalendarViewDataSource` also has two optional functions: `showsLeadingWeeks` and `showsTrailingWeeks`.
 
-- `showsLeadingWeeks`: If `true` (the default behavior), the calendar renders every day in `startDate`'s month. If `false, If `showsLeadingWeeks` is `false`, the earliest date that will be shown is the beginning of `startDate`'s week (i.e., if `startDate` is in the last week of its month and `showsLeadingWeeks` is false, only the week containing `startDate` will be shown).
+- `showsLeadingWeeks`: If `true` (the default behavior), the calendar renders every day in `startDate`'s month. If `false`, the earliest date that will be shown is the beginning of `startDate`'s week (i.e., if `startDate` is in the last week of its month and `showsLeadingWeeks` is false, only the week containing `startDate` will be shown).
 
 - `showsTrailingWeeks`: If `true` (the default behavior), the calendar renders every day in `endDate`'s month. If `false`, the last date that will be rendered is the end of `endDate`'s week. (i.e., if `endDate` is in the first week of its month and `showsTrailingWeeks` is false, only the week containing `endDate` will be shown).
 
@@ -82,12 +82,12 @@ To run the example project:
 3. Open `CalendarView.xcworkspace`, build, and run
 
 The example project contains three different example uses of the CalendarView:
-1. Basic: Uses `CalendarDayCell` packaged with ($POD_NAME) and is generally the most minimal use of ($POD_NAME) possible
+1. Basic: Uses `CalendarDayCell` packaged with Colander and is generally the most minimal use of `CalendarView` possible
 2. Advanced: Uses a custom day cell and header, highlights the day cell for the current day, supports single selection.
-3. Advanceder: Same as Advanced, but with multiple selection. Also demonstrates usage of ($POD_NAME)'s `select(date:)` function.
+3. Advanceder: Same as Advanced, but with multiple selection. Also demonstrates usage of `CalendarView`'s `select(date:)` function.
 
 ## Requirements
-- iOS 9+
+- iOS 8+ (iOS 9 for the example project due to `UIStackView` use)
 - Xcode 8+
 
 ## Dependencies
