@@ -10,7 +10,7 @@ Colander is a customizable UIView subclass that displays a scrolling calendar vi
 ## Why "Colander"?
 Because Blue Apron is a food company.
 
-Because "Colander" sounds like "calendar". Sort of.
+Because "Colander" sounds like "calendar", sort of.
 
 Because "CalendarView" was taken.
 
