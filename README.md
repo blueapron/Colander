@@ -82,9 +82,9 @@ To run the example project:
 3. Open `CalendarView.xcworkspace`, build, and run
 
 The example project contains three different example uses of the CalendarView:
-1. Basic: Uses `CalendarDayCell` packaged with ($POD_NAME) and is generally the most minimal use of ($POD_NAME) possible
+1. Basic: Uses `CalendarDayCell` packaged with Colander and is generally the most minimal use of `CalendarView` possible
 2. Advanced: Uses a custom day cell and header, highlights the day cell for the current day, supports single selection.
-3. Advanceder: Same as Advanced, but with multiple selection. Also demonstrates usage of ($POD_NAME)'s `select(date:)` function.
+3. Advanceder: Same as Advanced, but with multiple selection. Also demonstrates usage of `CalendarView`'s `select(date:)` function.
 
 ## Requirements
 - iOS 9+
