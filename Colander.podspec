@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'CalendarView'
+  s.name             = 'Colander'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of CalendarView.'
+  s.summary          = 'A highly customizable iOS calendar view'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,15 +21,15 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/blueapron/CalendarView'
+  s.homepage         = 'https://github.com/blueapron/Colander'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Bryan Oltman' => 'bryan.oltman@blueapron.com' }
-  s.source           = { :git => 'https://github.com/blueapron/CalendarView', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/blueapron/Colander', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'CalendarView/Classes/**/*'
+  s.source_files = 'Colander/Classes/**/*'
 
   s.dependency 'SnapKit', '~> 3.2.0'
   s.dependency 'SwiftDate', '~> 4.1.1'

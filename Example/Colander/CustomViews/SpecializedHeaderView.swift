@@ -3,10 +3,10 @@
 //  CalendarView
 //
 //  Created by Bryan Oltman on 5/16/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 Blue Apron. All rights reserved.
 //
 
-import CalendarView
+import Colander
 import SnapKit
 import UIKit
 

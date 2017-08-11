@@ -9,7 +9,7 @@
 import Quick
 import Nimble
 import SwiftDate
-@testable import CalendarView
+@testable import Colander
 
 class MonthInfoSpec: QuickSpec {
     override func spec() {
