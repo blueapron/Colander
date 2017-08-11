@@ -1,9 +1,9 @@
 # Colander
 
-[![CI Status](http://img.shields.io/travis/Bryan Oltman/CalendarView.svg?style=flat)](https://travis-ci.org/Bryan Oltman/CalendarView)
-[![Version](https://img.shields.io/cocoapods/v/CalendarView.svg?style=flat)](http://cocoapods.org/pods/CalendarView)
-[![License](https://img.shields.io/cocoapods/l/CalendarView.svg?style=flat)](http://cocoapods.org/pods/CalendarView)
-[![Platform](https://img.shields.io/cocoapods/p/CalendarView.svg?style=flat)](http://cocoapods.org/pods/CalendarView)
+[![CI Status](http://img.shields.io/travis/BryanOltman/Colander.svg?style=flat)](https://travis-ci.org/BryanOltman/Colander)
+[![Version](https://img.shields.io/cocoapods/v/Colander.svg?style=flat)](http://cocoapods.org/pods/Colander)
+[![License](https://img.shields.io/cocoapods/l/Colander.svg?style=flat)](http://cocoapods.org/pods/Colander)
+[![Platform](https://img.shields.io/cocoapods/p/Colander.svg?style=flat)](http://cocoapods.org/pods/Colander)
 
 Colander is a customizable UIView subclass that displays a scrolling calendar view.
 
