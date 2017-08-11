@@ -87,7 +87,7 @@ The example project contains three different example uses of the CalendarView:
 3. Advanceder: Same as Advanced, but with multiple selection. Also demonstrates usage of `CalendarView`'s `select(date:)` function.
 
 ## Requirements
-- iOS 9+
+- iOS 8+ (iOS 9 for the example project due to `UIStackView` use)
 - Xcode 8+
 
 ## Dependencies
