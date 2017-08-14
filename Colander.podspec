@@ -11,14 +11,10 @@ Pod::Spec.new do |s|
   s.version          = '0.1.0'
   s.summary          = 'A highly customizable iOS calendar view'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  Colander (originally developed for use in the Blue Apron app) provides a customizable,
+  vertically scrolling calendar view. Colander allows you to customize the display of dates
+  and month headers to match the style of your app.
                        DESC
 
   s.homepage         = 'https://github.com/blueapron/Colander'
