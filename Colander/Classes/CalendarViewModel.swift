@@ -24,6 +24,7 @@ class CalendarViewModel {
     let monthInfos: [MonthInfo]
     let showLeadingWeeks: Bool
     let showTrailingWeeks: Bool
+    private var dateCache = [Int: [Date?]]()
     fileprivate let daysPerWeek = Calendar.gregorian.weekdaySymbols.count
 
     static func numberOfSectionsNeededFor(startDate: Date, endDate: Date) -> Int {
@@ -85,6 +86,9 @@ class CalendarViewModel {
      - returns: An array of optional dates, where nil represents a day not in the current month
      */
     func dates(in section: Int) -> [Date?] {
+        if let dates = dateCache[section] {
+            return dates
+        }
         let monthInfo = monthInfos[section]
         var firstDisplayIndex = monthInfo.firstDayWeekdayIndex
         var lastDisplayIndex = firstDisplayIndex + (monthInfo.numberOfDaysInMonth - 1)
@@ -113,12 +117,15 @@ class CalendarViewModel {
 
         // We display full rows for every week we display, even if the current month starts or ends before the week.
         // Return nil for empty day cells
-        return (0..<requiredItems).map { index in
+        let dates: [Date?] = (0..<requiredItems).map { index in
             if index < max(firstDisplayIndex, 0) || index > lastDisplayIndex {
                 return nil
             }
 
             return zeroIndexDate + index.days
         }
+
+        dateCache[section] = dates
+        return dates
     }
 }
