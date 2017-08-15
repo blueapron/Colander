@@ -325,12 +325,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Colander/Colander.framework",
+				"${PODS_ROOT}/Reveal-SDK/RevealServer-9/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Colander.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 			);

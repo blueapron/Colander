@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'Colander_Example' do
   pod 'Colander', :path => '../'
+  pod 'Reveal-SDK', :configurations => ['Debug']
 
   target 'Colander_Tests' do
     inherit! :search_paths
