@@ -157,6 +157,11 @@ public class CalendarView: UIView {
         headerHeight = view.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
     }
 
+    /**
+     Triggers a calendar re-layout; functions similarly to reloadData on UITableView or UICollectionView.
+     Call this after changing start/end date or changing the value of showLeadingWeeks or showTrailingWeeks to make
+     the calendar view reflect those changes.
+     */
     public func reloadData() {
         guard let dataSource = self.dataSource else { return }
         viewModel = try? CalendarViewModel(startDate: dataSource.startDate, endDate: dataSource.endDate,
