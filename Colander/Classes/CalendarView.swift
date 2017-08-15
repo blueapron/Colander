@@ -234,7 +234,7 @@ public class CalendarView: UIView {
      */
     public func scroll(toDate date: Date, position: UICollectionViewScrollPosition = .centeredVertically, animated: Bool = true) {
         guard let indexPath = viewModel?.indexPath(from: date) else { return }
-        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: animated)
+        scroll(toIndexPath: indexPath, position: position, animated: animated)
     }
 
     /**
