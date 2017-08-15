@@ -1,3 +1,7 @@
+<p align="center" >
+  <img src="https://user-images.githubusercontent.com/581764/29331815-c817ba98-81cb-11e7-949b-c3f8165b3fb3.png" width=286px height=254 alt="Colander" title="Colander">
+</p>
+
 # Colander
 
 [![CI Status](http://img.shields.io/travis/BryanOltman/Colander.svg?style=flat)](https://travis-ci.org/BryanOltman/Colander)
