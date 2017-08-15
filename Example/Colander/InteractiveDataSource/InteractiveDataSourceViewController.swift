@@ -73,7 +73,13 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
 
         view.backgroundColor = .white
 
-        let configContainerView = createConfigView()
+        let configContainerView = UIView()
+        configContainerView.backgroundColor = .white
+        let configView = createConfigView()
+        configContainerView.addSubview(configView)
+        configView.snp.makeConstraints { make in
+            make.top.bottom.centerX.equalToSuperview()
+        }
 
         view.addSubview(configContainerView)
         configContainerView.snp.makeConstraints { make in
@@ -131,6 +137,7 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
         }
 
         trailingWeeksLabel.snp.makeConstraints { make in
+            make.left.greaterThanOrEqualTo(leadingWeeksSwitch.snp.right).offset(20)
             make.right.equalTo(trailingWeeksSwitch.snp.left).offset(-3)
             make.centerY.equalTo(trailingWeeksSwitch)
         }
