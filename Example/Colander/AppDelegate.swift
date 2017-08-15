@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabController = UITabBarController()
         tabController.viewControllers = [BasicCalendarViewController(),
                                          CustomCalendarViewController(),
-                                         MultiSelectionCalendarViewController()]
+                                         MultiSelectionCalendarViewController(),
+                                         InteractiveDataSourceViewController()]
         window = UIWindow()
         window?.rootViewController = tabController
         window?.makeKeyAndVisible()

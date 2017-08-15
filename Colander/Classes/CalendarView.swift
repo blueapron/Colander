@@ -51,11 +51,7 @@ public extension CalendarViewDelegate {
 public class CalendarView: UIView {
     public weak var dataSource: CalendarViewDataSource? {
         didSet {
-            guard let dataSource = dataSource else { return }
-            viewModel = try? CalendarViewModel(startDate: dataSource.startDate, endDate: dataSource.endDate,
-                                               showLeadingWeeks: dataSource.showLeadingWeeks,
-                                               showTrailingWeeks: dataSource.showTrailingWeeks)
-            collectionView.reloadData()
+            reloadData()
         }
     }
 
@@ -159,6 +155,14 @@ public class CalendarView: UIView {
         view.setNeedsLayout()
         view.layoutIfNeeded()
         headerHeight = view.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+    }
+
+    public func reloadData() {
+        guard let dataSource = self.dataSource else { return }
+        viewModel = try? CalendarViewModel(startDate: dataSource.startDate, endDate: dataSource.endDate,
+                                           showLeadingWeeks: dataSource.showLeadingWeeks,
+                                           showTrailingWeeks: dataSource.showTrailingWeeks)
+        collectionView.reloadData()
     }
 
     /**
