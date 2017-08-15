@@ -8,7 +8,8 @@
 Colander is a customizable UIView subclass that displays a scrolling calendar view.
 
 <p align='center'>
-<img src='https://user-images.githubusercontent.com/581764/29291523-e3cf920c-8111-11e7-8c18-a120fa9201e3.png' alt='A basic, unstyled calendar view' width=300 align='center'>
+<img src='https://user-images.githubusercontent.com/581764/29291523-e3cf920c-8111-11e7-8c18-a120fa9201e3.png' title='A basic, unstyled calendar view' width=300 align='center' />
+<img src='https://user-images.githubusercontent.com/581764/29321940-fa718266-81a9-11e7-8c56-87fe106956f5.png' title='A more sophisticated calendar view from the Blue Apron app' width=300 align='center' />
 </p>
 
 ## Why "Colander"?
