@@ -224,6 +224,29 @@ public class CalendarView: UIView {
             deselect(date: date)
         }
     }
+
+    /**
+     Scrolls the calendar to the provided date
+
+     - parameter date:     the date to display
+     - parameter position: the position to scroll to (defaults to centeredVertically)
+     - parameter animated: whether the scrolling should be animated (defaults to true)
+     */
+    public func scroll(toDate date: Date, position: UICollectionViewScrollPosition = .centeredVertically, animated: Bool = true) {
+        guard let indexPath = viewModel?.indexPath(from: date) else { return }
+        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: animated)
+    }
+
+    /**
+     Scrolls the calendar to the provided index path
+
+     - parameter indexPath: the index path to scroll to
+     - parameter position:  the position to scroll to (defaults to centeredVertically)
+     - parameter animated:  whether the scrolling should be animated (defaults to true)
+     */
+    public func scroll(toIndexPath indexPath: IndexPath, position: UICollectionViewScrollPosition = .centeredVertically, animated: Bool = true) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: animated)
+    }
 }
 
 extension CalendarView: UICollectionViewDataSource {
