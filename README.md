@@ -107,9 +107,11 @@ Colander development was made infinitely more pleasant by [SwiftDate](https://gi
 
 Bryan Oltman, bryan.oltman@blueapron.com
 
-## Licenses
+## License
 
 Colander is available under the MIT license. See the LICENSE file for more info.
+
+## Third-Party Licenses
 
 #### SnapKit
 
