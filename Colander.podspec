@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/blueapron/Colander'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Bryan Oltman' => 'bryan.oltman@blueapron.com' }
-  s.source           = { :git => 'https://github.com/blueapron/Colander', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/blueapron/Colander.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
@@ -20,4 +20,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'SnapKit', '~> 3.2.0'
   s.dependency 'SwiftDate', '~> 4.1.1'
+
 end
