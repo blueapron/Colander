@@ -8,7 +8,14 @@
 
 import Colander
 
-class SpecializedDayCell: UICollectionViewCell, Dated {
+class SpecializedDayCell: UICollectionViewCell, Dated, DateFormatting {
+    public let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "d"
+        return formatter
+    }()
+
     var date: Date? {
         didSet {
             guard let date = date else {
@@ -16,7 +23,7 @@ class SpecializedDayCell: UICollectionViewCell, Dated {
                 return
             }
 
-            dateLabel.text = String(date.day)
+            dateLabel.text = dateFormatter.string(from: date)
         }
     }
 

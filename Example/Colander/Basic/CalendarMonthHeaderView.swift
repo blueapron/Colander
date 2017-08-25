@@ -1,6 +1,13 @@
 import Colander
 
-class CalendarMonthHeaderView: UICollectionReusableView, Dated {
+class CalendarMonthHeaderView: UICollectionReusableView, Dated, DateFormatting {
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "MMMM yyyy"
+        return formatter
+    }()
+
     var date: Date? {
         didSet {
             guard let date = date else {
@@ -8,10 +15,7 @@ class CalendarMonthHeaderView: UICollectionReusableView, Dated {
                 return
             }
 
-            let formatter = DateFormatter()
-            formatter.timeZone = TimeZone(secondsFromGMT: 0)
-            formatter.dateFormat = "MMMM yyyy"
-            label.text = formatter.string(from: date)
+            label.text = dateFormatter.string(from: date)
         }
     }
 

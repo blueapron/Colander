@@ -3,6 +3,7 @@ import SwiftDate
 import UIKit
 
 public protocol CalendarViewDataSource: class {
+    var calendar: Calendar { get }
     var startDate: Date { get }
     var endDate: Date { get }
     var showLeadingWeeks: Bool { get }
@@ -10,6 +11,10 @@ public protocol CalendarViewDataSource: class {
 }
 
 public extension CalendarViewDataSource {
+    var calendar: Calendar {
+        return Calendar.gregorian
+    }
+
     var showLeadingWeeks: Bool {
         return true
     }
@@ -45,8 +50,9 @@ public extension CalendarViewDelegate {
     }
 }
 
-
-// based on https://github.com/mmick66/CalendarView
+public protocol DateFormatting {
+    var dateFormatter: DateFormatter { get }
+}
 
 public class CalendarView: UIView {
     public weak var dataSource: CalendarViewDataSource? {
@@ -166,7 +172,8 @@ public class CalendarView: UIView {
         guard let dataSource = self.dataSource else { return }
         viewModel = try? CalendarViewModel(startDate: dataSource.startDate, endDate: dataSource.endDate,
                                            showLeadingWeeks: dataSource.showLeadingWeeks,
-                                           showTrailingWeeks: dataSource.showTrailingWeeks)
+                                           showTrailingWeeks: dataSource.showTrailingWeeks,
+                                           calendar: dataSource.calendar)
         collectionView.reloadData()
     }
 
@@ -269,6 +276,10 @@ extension CalendarView: UICollectionViewDataSource {
             return dayCell
         }
 
+        if let formattingCell = dayCell as? DateFormatting {
+            formattingCell.dateFormatter.calendar = viewModel?.calendar
+        }
+
         let date = viewModel?.date(at: indexPath)
         datedCell.date = date
         dayCell.isUserInteractionEnabled = date != nil
@@ -285,6 +296,10 @@ extension CalendarView: UICollectionViewDataSource {
                                viewForSupplementaryElementOfKind kind: String,
                                at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath)
+        if let headerView = headerView as? DateFormatting {
+            headerView.dateFormatter.calendar = viewModel?.calendar
+        }
+
         if let currentMonthInfo = viewModel?.monthInfos[indexPath.section], var headerView = headerView as? Dated {
             headerView.date = currentMonthInfo.startDate
         }
