@@ -19,13 +19,16 @@ public protocol Dated {
 }
 
 class CalendarViewModel {
+    let calendar: Calendar
     let startDate: Date
     let endDate: Date
     let monthInfos: [MonthInfo]
     let showLeadingWeeks: Bool
     let showTrailingWeeks: Bool
     private var dateCache = [Int: [Date?]]()
-    fileprivate let daysPerWeek = Calendar.gregorian.weekdaySymbols.count
+    var daysPerWeek: Int {
+        return calendar.weekdaySymbols.count
+    }
 
     static func numberOfSectionsNeededFor(startDate: Date, endDate: Date) -> Int {
         let monthSpan = endDate.month - startDate.month
@@ -33,13 +36,14 @@ class CalendarViewModel {
         return yearSpan * 12 + monthSpan + 1
     }
 
-    static func makeMonthInfos(startDate: Date, endDate: Date) throws -> [MonthInfo] {
+    static func makeMonthInfos(startDate: Date, endDate: Date, calendar: Calendar) throws -> [MonthInfo] {
         let monthStartDate = startDate.beginningOfMonth
         let sections = (0..<(numberOfSectionsNeededFor(startDate: startDate, endDate: endDate)))
-        return try sections.map { try MonthInfo(forMonthContaining: monthStartDate + $0.months) }
+        return try sections.map { try MonthInfo(forMonthContaining: monthStartDate + $0.months, with: calendar) }
     }
 
-    init(startDate: Date, endDate: Date, showLeadingWeeks: Bool = true, showTrailingWeeks: Bool = true) throws {
+    init(startDate: Date, endDate: Date, showLeadingWeeks: Bool = true,
+         showTrailingWeeks: Bool = true, calendar: Calendar = Calendar.gregorian) throws {
         if startDate > endDate && !startDate.isInSameDayOf(date: endDate) {
             throw DateError.InvalidDateOrdering
         }
@@ -48,7 +52,9 @@ class CalendarViewModel {
         self.endDate = endDate
         self.showLeadingWeeks = showLeadingWeeks
         self.showTrailingWeeks = showTrailingWeeks
-        self.monthInfos = try CalendarViewModel.makeMonthInfos(startDate: startDate, endDate: endDate)
+        self.calendar = calendar
+        Date.setDefaultRegion(Region(tz: TimeZone.current, cal: calendar, loc: Locale.current))
+        self.monthInfos = try CalendarViewModel.makeMonthInfos(startDate: startDate, endDate: endDate, calendar: calendar)
     }
 
     func date(at indexPath: IndexPath) -> Date? {

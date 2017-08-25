@@ -10,7 +10,13 @@ import Colander
 import SnapKit
 import UIKit
 
-class SpecializedHeaderView: UICollectionReusableView, Dated {
+class SpecializedHeaderView: UICollectionReusableView, Dated, DateFormatting {
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
+    }()
+
     var date: Date? {
         didSet {
             guard let date = date else {
@@ -19,28 +25,23 @@ class SpecializedHeaderView: UICollectionReusableView, Dated {
                 return
             }
 
-            let formatter = DateFormatter()
-            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            dateFormatter.dateFormat = "MMMM"
+            monthLabel.text = dateFormatter.string(from: date)
 
-            formatter.dateFormat = "MMMM"
-            monthLabel.text = formatter.string(from: date)
-
-            formatter.dateFormat = "yyyy"
-            yearLabel.text = formatter.string(from: date)
+            dateFormatter.dateFormat = "yyyy"
+            yearLabel.text = dateFormatter.string(from: date)
         }
     }
 
     let monthLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)
-        // label.textStyle = TextStyle(font: .ceraMediumFont(ofSize: 15), color: .mainBlue)
         return label
     }()
 
     let yearLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
-        // label.textStyle = TextStyle(font: .chronicleBookFont(ofSize: 14), color: .accentBlue)
         return label
     }()
 
@@ -93,15 +94,11 @@ class SpecializedHeaderView: UICollectionReusableView, Dated {
             weekdayHeightConstraint = make.height.equalTo(26).constraint
         }
 
-        // dateLabelContainer.addBorder(edges: [.top], color: UIColor(white: 0, alpha: 0.08))
-        // addBorder(edges: [.bottom], color: UIColor(white: 0, alpha: 0.08))
-
         let formatter = DateFormatter()
         for index in 0...6 {
             let day = formatter.weekdaySymbols[index % 7]
             let weekdayLabel = UILabel()
             weekdayLabel.textAlignment = .center
-            // weekdayLabel.textStyle = TextStyle(font: .ceraRegularFont(ofSize: 10), color: .accentBlue, alignment: .center)
             weekdayLabel.text = String(day.characters.first ?? Character(""))
 
             let labelContainer = UIView()

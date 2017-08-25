@@ -1,4 +1,11 @@
-open class CalendarDayCell: UICollectionViewCell, Dated {
+open class CalendarDayCell: UICollectionViewCell, Dated, DateFormatting {
+    public let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "d"
+        return formatter
+    }()
+
     open var date: Date? {
         didSet {
             guard let date = date else {
@@ -6,7 +13,7 @@ open class CalendarDayCell: UICollectionViewCell, Dated {
                 return
             }
 
-            dateLabel.text = String(date.day)
+            dateLabel.text = dateFormatter.string(from: date)
         }
     }
 
