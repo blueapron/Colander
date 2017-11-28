@@ -1,17 +1,17 @@
 PODS:
   - Colander (0.1.1):
-    - SnapKit (~> 3.2.0)
-    - SwiftDate (~> 4.1.1)
-  - Nimble (7.0.1)
-  - Quick (1.1.0)
-  - Reveal-SDK (9)
-  - SnapKit (3.2.0)
-  - SwiftDate (4.1.7)
+    - SnapKit (~> 4.0)
+    - SwiftDate (~> 4.5.0)
+  - Nimble (7.0.3)
+  - Quick (1.2.0)
+  - Reveal-SDK (12)
+  - SnapKit (4.0.0)
+  - SwiftDate (4.5.0)
 
 DEPENDENCIES:
   - Colander (from `../`)
-  - Nimble (~> 7.0.1)
-  - Quick (~> 1.1.0)
+  - Nimble (~> 7.0.3)
+  - Quick (~> 1.2.0)
   - Reveal-SDK
 
 EXTERNAL SOURCES:
@@ -19,13 +19,13 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Colander: 1947c63f7646df6c1c158e81c6d9772b87e16a1c
-  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
-  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
-  Reveal-SDK: d977a1ec41e7c076025c1005da6e6d7c1b8ed254
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
-  SwiftDate: 029be76691ee89176da3a46c7df3415b6734bc5b
+  Colander: ba6e0729d146c1fd77341f7d34c78e14e12fe640
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  Reveal-SDK: 58517b2a4d5d69dcb98e62aa4a5e62c84b5e0061
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftDate: 17dd829c004a2d60432ef63ffcdb26ca2eb97a60
 
-PODFILE CHECKSUM: f5108c1bbfad1b3abc9f5eda3e5952cb71631301
+PODFILE CHECKSUM: 2174826a9b4793f3ae8d4bddc99e84fb9437e818
 
 COCOAPODS: 1.3.1

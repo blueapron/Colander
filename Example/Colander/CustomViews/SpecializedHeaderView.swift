@@ -99,7 +99,7 @@ class SpecializedHeaderView: UICollectionReusableView, Dated, DateFormatting {
             let day = formatter.weekdaySymbols[index % 7]
             let weekdayLabel = UILabel()
             weekdayLabel.textAlignment = .center
-            weekdayLabel.text = String(day.characters.first ?? Character(""))
+            weekdayLabel.text = String(day.first ?? Character(""))
 
             let labelContainer = UIView()
             labelContainer.addSubview(weekdayLabel)

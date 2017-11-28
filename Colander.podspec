@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Colander/Classes/**/*'
 
-  s.dependency 'SnapKit', '~> 3.2.0'
-  s.dependency 'SwiftDate', '~> 4.1.1'
+  s.dependency 'SnapKit', '~> 4.0'
+  s.dependency 'SwiftDate', '~> 4.5.0'
 
 end

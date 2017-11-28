@@ -169,11 +169,11 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
         endDateTextField.text = dateFormatter.string(from: endDate)
     }
 
-    func datePickerValueChanged() {
+    @objc func datePickerValueChanged() {
         print("date picker date is now \(datePicker.date)")
     }
 
-    func doneButtonTapped() {
+    @objc func doneButtonTapped() {
         if startDateTextField.isFirstResponder {
             startDate = datePicker.date
             startDateTextField.resignFirstResponder()
@@ -185,12 +185,12 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
         updateTextFieldText()
     }
 
-    func leadingWeeksToggled(sender: UISwitch) {
+    @objc func leadingWeeksToggled(sender: UISwitch) {
         showLeadingWeeks = sender.isOn
         calendarView.reloadData()
     }
 
-    func trailingWeeksToggled(sender: UISwitch) {
+    @objc func trailingWeeksToggled(sender: UISwitch) {
         showTrailingWeeks = sender.isOn
         calendarView.reloadData()
     }
