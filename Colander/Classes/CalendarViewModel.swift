@@ -118,7 +118,7 @@ class CalendarViewModel {
             lastDisplayIndex -= (dayDifference - 1)
         }
 
-        let requiredRows = ceil(Double(lastDisplayIndex) / Double(daysPerWeek))
+        let requiredRows = ceil(Double(lastDisplayIndex + 1) / Double(daysPerWeek))
         let requiredItems = Int(requiredRows) * daysPerWeek
 
         // We display full rows for every week we display, even if the current month starts or ends before the week.
