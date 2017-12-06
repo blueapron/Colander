@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Colander'
-  s.version          = '0.2'
+  s.version          = '0.2.1'
   s.summary          = 'A highly customizable iOS calendar view'
 
   s.description      = <<-DESC
