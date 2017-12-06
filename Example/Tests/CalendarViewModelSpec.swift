@@ -108,6 +108,33 @@ class CalendarViewModelSpec: QuickSpec {
                     expect(subject.date(at: IndexPath(item: 32, section: 0))).to(beNil())
                 }
             }
+
+            context("in a month whose final day is the first day of a week") {
+                beforeEach {
+                    let startDate = Date.mockDateFrom(year: 2017, month: 12, day: 1)
+                    let endDate = Date.mockDateFrom(year: 2017, month: 12, day: 1)
+                    subject = try! CalendarViewModel(startDate: startDate, endDate: endDate,
+                                                     showLeadingWeeks: true, showTrailingWeeks: true)
+                }
+
+                it("has the right date count") {
+                    expect(subject.dates(in: 0).count).to(equal(42))
+                }
+
+                it("returns nil for index paths that fall in the leading or trailing days") {
+                    expect(subject.date(at: IndexPath(item: 0, section: 0))).to(beNil())
+                    expect(subject.date(at: IndexPath(item: 36, section: 0))).to(beNil())
+                }
+
+                it("returns days corresponding to index paths") {
+                    expect(subject.date(at: IndexPath(item: 5, section: 0)))
+                        .to(equal(Date.mockDateFrom(year: 2017, month: 12, day: 1)))
+                    expect(subject.date(at: IndexPath(item: 30, section: 0)))
+                        .to(equal(Date.mockDateFrom(year: 2017, month: 12, day: 26)))
+                    expect(subject.date(at: IndexPath(item: 35, section: 0)))
+                        .to(equal(Date.mockDateFrom(year: 2017, month: 12, day: 31)))
+                }
+            }
         }
 
         describe("indexPath(from:)") {

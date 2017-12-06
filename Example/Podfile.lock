@@ -1,5 +1,5 @@
 PODS:
-  - Colander (0.1.1):
+  - Colander (0.2.1):
     - SnapKit (~> 4.0)
     - SwiftDate (~> 4.5.0)
   - Nimble (7.0.3)
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Colander: ba6e0729d146c1fd77341f7d34c78e14e12fe640
+  Colander: 5b0f56adaa5baa86b2cb58f87946fef90069d28a
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   Reveal-SDK: 58517b2a4d5d69dcb98e62aa4a5e62c84b5e0061
