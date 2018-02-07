@@ -71,7 +71,8 @@ class CalendarViewModel {
             return nil
         }
         let zeroIndexDate = firstDisplayDate(for: section, showLeadingWeeks: showLeadingWeeks)
-        let intervalDiff = date - zeroIndexDate
+        // 1 hour is added to make this calculation correct for the beginning of Daylight Saving Time. I don't like it either.
+        let intervalDiff = (date + 1.hour) - zeroIndexDate
         return IndexPath(item: intervalDiff.in(.day) ?? 0, section: section)
     }
 

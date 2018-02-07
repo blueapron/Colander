@@ -155,13 +155,37 @@ class CalendarViewModelSpec: QuickSpec {
                     expect(subject.indexPath(from: Date.mockDateFrom(year: 2017, month: 8, day: 30)))
                         .to(equal(IndexPath(item: 31, section: 0)))
                 }
+            }
 
-                it("??") {
-                    expect(subject.indexPath(from: Date.mockDateFrom(year: 2015, month: 8, day: 30)))
-                        .to(beNil())
+            context("in the month when DST begins") {
+                // DST begins on March 11 in 2018
+                beforeEach {
+                    let startDate = Date.mockDateFrom(year: 2018, month: 2, day: 15)
+                    let endDate = Date.mockDateFrom(year: 2018, month: 3, day: 30)
+                    subject = try! CalendarViewModel(startDate: startDate, endDate: endDate,
+                                                     showLeadingWeeks: true, showTrailingWeeks: true)
+                }
+
+                it("correctly computes the index path for a date after DST starts") {
+                    let indexPath = subject.indexPath(from: Date.mockDateFrom(year: 2018, month: 3, day: 19))
+                    expect(indexPath?.row).to(equal(22))
+                }
+            }
+
+            context("in the month when DST ends") {
+                // DST ends on November 4 in 2018
+                beforeEach {
+                    let startDate = Date.mockDateFrom(year: 2018, month: 10, day: 15)
+                    let endDate = Date.mockDateFrom(year: 2018, month: 11, day: 30)
+                    subject = try! CalendarViewModel(startDate: startDate, endDate: endDate,
+                                                     showLeadingWeeks: true, showTrailingWeeks: true)
+                }
+
+                it("correctly computes the index path for a date after DST starts") {
+                    let indexPath = subject.indexPath(from: Date.mockDateFrom(year: 2018, month: 11, day: 12))
+                    expect(indexPath?.row).to(equal(15))
                 }
             }
         }
-
     }
 }
