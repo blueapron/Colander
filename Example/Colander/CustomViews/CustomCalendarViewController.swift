@@ -28,7 +28,7 @@ class CustomCalendarViewController: UIViewController {
         view.backgroundColor = .white
 
         calendarView.register(cellType: SpecializedDayCell.self)
-        calendarView.register(supplementaryViewType: SpecializedHeaderView.self, ofKind: UICollectionElementKindSectionHeader)
+        calendarView.register(supplementaryViewType: SpecializedHeaderView.self, ofKind: UICollectionView.elementKindSectionHeader)
         calendarView.dataSource = self
         calendarView.delegate = self
         view.addSubview(calendarView)

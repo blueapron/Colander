@@ -29,7 +29,7 @@ class BasicCalendarViewController: UIViewController {
         view.backgroundColor = .white
 
         calendarView.register(cellType: CalendarDayCell.self)
-        calendarView.register(supplementaryViewType: CalendarMonthHeaderView.self, ofKind: UICollectionElementKindSectionHeader)
+        calendarView.register(supplementaryViewType: CalendarMonthHeaderView.self, ofKind: UICollectionView.elementKindSectionHeader)
         calendarView.dataSource = self
         calendarView.delegate = self
         view.addSubview(calendarView)

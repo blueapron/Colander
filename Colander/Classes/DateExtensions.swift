@@ -6,11 +6,13 @@ extension Calendar {
 
 extension Date {
     var beginningOfMonth: Date {
-        return self.startOf(component: .month)
+        var firstDayOfStartMonth = Calendar.gregorian.dateComponents( [.era, .year, .month], from: self)
+        firstDayOfStartMonth.day = 1
+        return Calendar.gregorian.date(from: firstDayOfStartMonth) ?? Date.nowAt(.startOfMonth)
     }
     
     var beginningOfWeek: Date {
-        return self.startOf(component: .weekOfMonth)
+        return Calendar.gregorian.date(from: Calendar.gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) ?? Date.nowAt(.startOfWeek)
     }
 
     var endOfWeek: Date {

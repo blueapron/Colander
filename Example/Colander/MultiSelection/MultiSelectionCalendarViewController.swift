@@ -28,14 +28,14 @@ class MultiSelectionCalendarViewController: UIViewController {
         view.backgroundColor = .white
 
         calendarView.register(cellType: SpecializedDayCell.self)
-        calendarView.register(supplementaryViewType: SpecializedHeaderView.self, ofKind: UICollectionElementKindSectionHeader)
+        calendarView.register(supplementaryViewType: SpecializedHeaderView.self, ofKind: UICollectionView.elementKindSectionHeader)
         calendarView.allowsMultipleSelection = true
         calendarView.dataSource = self
         calendarView.delegate = self
         calendarView.select(date: Date())
-        calendarView.select(date: Date() + 1.week)
+        calendarView.select(date: Date() + 1.weeks)
         calendarView.select(date: Date() + 2.weeks)
-        calendarView.select(date: Date() + 1.month)
+        calendarView.select(date: Date() + 1.months)
         view.addSubview(calendarView)
         calendarView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(20)

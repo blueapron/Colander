@@ -1,14 +1,13 @@
-platform :ios, '8.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'Colander_Example' do
   pod 'Colander', :path => '../'
-  pod 'Reveal-SDK', :configurations => ['Debug']
 
   target 'Colander_Tests' do
     inherit! :search_paths
 
-    pod 'Quick', '~> 1.2.0'
-    pod 'Nimble', '~> 7.0.3'
+    pod 'Quick', '~> 2.1.0'
+    pod 'Nimble', '~> 8.0.1'
   end
 end

@@ -16,7 +16,7 @@ class CalendarViewModelSpec: QuickSpec {
         describe("init") {
             it("creates the correct month infos for a single month") {
                 let startDate = Date.mockDateFrom(year: 2017, month: 8, day: 4)
-                let endDate = startDate + 1.week
+                let endDate = startDate + 1.weeks
                 let subject = try! CalendarViewModel(startDate: startDate, endDate: endDate)
                 expect(subject.monthInfos.count).to(equal(1))
                 let mockMonthInfo = try! MonthInfo(forMonthContaining: startDate)
@@ -53,7 +53,7 @@ class CalendarViewModelSpec: QuickSpec {
 
             it("throws an error if startDate is later than endDate") {
                 let startDate = Date.mockDateFrom(year: 2017, month: 8, day: 4)
-                let endDate = startDate - 1.day
+                let endDate = startDate - 1.days
                 try? expect(testCalendarViewModel(startDate: startDate, endDate: endDate)).to(throwError())
                 // ...but *not* if it's in the same day
                 try! testCalendarViewModel(startDate: endDate + 2.minutes, endDate: endDate)

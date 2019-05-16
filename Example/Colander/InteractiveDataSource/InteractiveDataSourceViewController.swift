@@ -87,7 +87,7 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
         }
 
         calendarView.register(cellType: SpecializedDayCell.self)
-        calendarView.register(supplementaryViewType: SpecializedHeaderView.self, ofKind: UICollectionElementKindSectionHeader)
+        calendarView.register(supplementaryViewType: SpecializedHeaderView.self, ofKind: UICollectionView.elementKindSectionHeader)
         view.addSubview(calendarView)
         calendarView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
