@@ -160,7 +160,7 @@ public class CalendarView: UIView {
         let view = supplementaryViewType.init(frame: CGRect.zero)
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        headerHeight = view.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        headerHeight = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
     }
 
     /**
@@ -193,7 +193,7 @@ public class CalendarView: UIView {
      */
     public func select(date: Date) {
         guard !selectedDates.contains(date) else { return }
-        selectedDates.append(date.startOfDay)
+        selectedDates.append(DateInRegion(date).dateAt(.startOfDay).date)
         collectionView.selectItem(at: viewModel?.indexPath(from: date), animated: false, scrollPosition: [])
     }
 
@@ -203,8 +203,9 @@ public class CalendarView: UIView {
      - parameter date: the date to deselect
      */
     public func deselect(date: Date) {
-        guard let indexPath = viewModel?.indexPath(from: date.startOfDay) else { return }
-        if let index = selectedDates.index(of: date.startOfDay) {
+        let startOfDay = DateInRegion(date).dateAt(.startOfDay).date
+        guard let indexPath = viewModel?.indexPath(from: startOfDay) else { return }
+        if let index = selectedDates.firstIndex(of: startOfDay) {
             selectedDates.remove(at: index)
         }
         collectionView.deselectItem(at: indexPath, animated: false)
@@ -239,7 +240,7 @@ public class CalendarView: UIView {
      - parameter position: the position to scroll to (defaults to centeredVertically)
      - parameter animated: whether the scrolling should be animated (defaults to true)
      */
-    public func scroll(toDate date: Date, position: UICollectionViewScrollPosition = .centeredVertically, animated: Bool = true) {
+    public func scroll(toDate date: Date, position: UICollectionView.ScrollPosition = .centeredVertically, animated: Bool = true) {
         guard let indexPath = viewModel?.indexPath(from: date) else { return }
         scroll(toIndexPath: indexPath, position: position, animated: animated)
     }
@@ -251,7 +252,7 @@ public class CalendarView: UIView {
      - parameter position:  the position to scroll to (defaults to centeredVertically)
      - parameter animated:  whether the scrolling should be animated (defaults to true)
      */
-    public func scroll(toIndexPath indexPath: IndexPath, position: UICollectionViewScrollPosition = .centeredVertically, animated: Bool = true) {
+    public func scroll(toIndexPath indexPath: IndexPath, position: UICollectionView.ScrollPosition = .centeredVertically, animated: Bool = true) {
         collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: animated)
     }
 }

@@ -44,7 +44,7 @@ class CalendarViewModel {
 
     init(startDate: Date, endDate: Date, showLeadingWeeks: Bool = true,
          showTrailingWeeks: Bool = true, calendar: Calendar = Calendar.gregorian) throws {
-        if startDate > endDate && !startDate.isInSameDayOf(date: endDate) {
+        if startDate > endDate && !DateInRegion(startDate).compare(.isSameDay(endDate)) {
             throw DateError.InvalidDateOrdering
         }
 
@@ -53,7 +53,7 @@ class CalendarViewModel {
         self.showLeadingWeeks = showLeadingWeeks
         self.showTrailingWeeks = showTrailingWeeks
         self.calendar = calendar
-        Date.setDefaultRegion(Region(tz: TimeZone.current, cal: calendar, loc: Locale.current))
+        SwiftDate.defaultRegion = Region(calendar: calendar, zone: TimeZone.current, locale: Locale.current)
         self.monthInfos = try CalendarViewModel.makeMonthInfos(startDate: startDate, endDate: endDate, calendar: calendar)
     }
 
@@ -72,7 +72,7 @@ class CalendarViewModel {
         }
         let zeroIndexDate = firstDisplayDate(for: section, showLeadingWeeks: showLeadingWeeks)
         // 1 hour is added to make this calculation correct for the beginning of Daylight Saving Time. I don't like it either.
-        let intervalDiff = (date + 1.hour) - zeroIndexDate
+        let intervalDiff = (date + 1.hours) - zeroIndexDate
         return IndexPath(item: intervalDiff.in(.day) ?? 0, section: section)
     }
 

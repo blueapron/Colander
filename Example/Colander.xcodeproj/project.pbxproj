@@ -20,8 +20,8 @@
 		62FAC0221F3E06E8007FE44C /* CalendarViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FAC01F1F3E06E8007FE44C /* CalendarViewModelSpec.swift */; };
 		62FAC0231F3E06E8007FE44C /* Date+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FAC0201F3E06E8007FE44C /* Date+Mock.swift */; };
 		62FAC0241F3E06E8007FE44C /* MonthInfoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FAC0211F3E06E8007FE44C /* MonthInfoSpec.swift */; };
-		DC3B97E0EE8549D688C2F6FF /* Pods_Colander_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2D5041AB069CEB3298E3FD /* Pods_Colander_Example.framework */; };
-		DE58271D71A9CB481A3375B0 /* Pods_Colander_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD2A63ECA11845C57821BD31 /* Pods_Colander_Tests.framework */; };
+		742F5ECD784B10712C6E2697 /* Pods_Colander_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2AE24330433B58DE569374 /* Pods_Colander_Tests.framework */; };
+		F55364AA1604AA718830276E /* Pods_Colander_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAB82305CD655860B9FCB63F /* Pods_Colander_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +37,7 @@
 /* Begin PBXFileReference section */
 		1089385E523011FABC5B870B /* Colander.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Colander.podspec; path = ../Colander.podspec; sourceTree = "<group>"; };
 		1939F3CCD64571E5E090650F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		2AAD174CA339E5E90645876B /* Pods-Colander_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colander_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		56A83F39EA407F2CDFD0D53D /* Pods-Colander_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colander_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3E2AE24330433B58DE569374 /* Pods_Colander_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Colander_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* Colander_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colander_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,14 +52,15 @@
 		62260F5A1F3E04390008655B /* CalendarMonthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMonthHeaderView.swift; sourceTree = "<group>"; };
 		62260F5C1F3E04390008655B /* MultiSelectionCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSelectionCalendarViewController.swift; sourceTree = "<group>"; };
 		625381921F420BE8005AE56A /* InteractiveDataSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveDataSourceViewController.swift; sourceTree = "<group>"; };
+		6295B1EB882CCFE4E0133EEB /* Pods-Colander_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colander_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		62FAC01F1F3E06E8007FE44C /* CalendarViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModelSpec.swift; sourceTree = "<group>"; };
 		62FAC0201F3E06E8007FE44C /* Date+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Mock.swift"; sourceTree = "<group>"; };
 		62FAC0211F3E06E8007FE44C /* MonthInfoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthInfoSpec.swift; sourceTree = "<group>"; };
-		7D1A1B8CC3CDD70797A53DF4 /* Pods-Colander_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colander_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		7294F3BA7EF1A7A9FE26D21E /* Pods-Colander_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colander_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example.release.xcconfig"; sourceTree = "<group>"; };
 		92A05200074333A60C779902 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		A790538AC1E9E5D6B9ED2FC2 /* Pods-Colander_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colander_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example.release.xcconfig"; sourceTree = "<group>"; };
-		EF2D5041AB069CEB3298E3FD /* Pods_Colander_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Colander_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD2A63ECA11845C57821BD31 /* Pods_Colander_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Colander_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6363956A69578F91E7397AB /* Pods-Colander_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colander_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		D6F026F00D08FBFA1277A828 /* Pods-Colander_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colander_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		DAB82305CD655860B9FCB63F /* Pods_Colander_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Colander_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC3B97E0EE8549D688C2F6FF /* Pods_Colander_Example.framework in Frameworks */,
+				F55364AA1604AA718830276E /* Pods_Colander_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,13 +76,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE58271D71A9CB481A3375B0 /* Pods_Colander_Tests.framework in Frameworks */,
+				742F5ECD784B10712C6E2697 /* Pods_Colander_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27192816F2F6D84826A53B44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6F026F00D08FBFA1277A828 /* Pods-Colander_Example.debug.xcconfig */,
+				7294F3BA7EF1A7A9FE26D21E /* Pods-Colander_Example.release.xcconfig */,
+				C6363956A69578F91E7397AB /* Pods-Colander_Tests.debug.xcconfig */,
+				6295B1EB882CCFE4E0133EEB /* Pods-Colander_Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3947210A513998C7223043E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DAB82305CD655860B9FCB63F /* Pods_Colander_Example.framework */,
+				3E2AE24330433B58DE569374 /* Pods_Colander_Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -90,8 +110,8 @@
 				607FACD21AFB9204008FA782 /* Example for Colander */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
-				B0A09B9D253E8725D29ED2A4 /* Pods */,
-				74F79B780FBB22A88E9A2E22 /* Frameworks */,
+				27192816F2F6D84826A53B44 /* Pods */,
+				3947210A513998C7223043E5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,26 +212,6 @@
 			path = InteractiveDataSource;
 			sourceTree = "<group>";
 		};
-		74F79B780FBB22A88E9A2E22 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EF2D5041AB069CEB3298E3FD /* Pods_Colander_Example.framework */,
-				FD2A63ECA11845C57821BD31 /* Pods_Colander_Tests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B0A09B9D253E8725D29ED2A4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2AAD174CA339E5E90645876B /* Pods-Colander_Example.debug.xcconfig */,
-				A790538AC1E9E5D6B9ED2FC2 /* Pods-Colander_Example.release.xcconfig */,
-				56A83F39EA407F2CDFD0D53D /* Pods-Colander_Tests.debug.xcconfig */,
-				7D1A1B8CC3CDD70797A53DF4 /* Pods-Colander_Tests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -219,12 +219,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Colander_Example" */;
 			buildPhases = (
-				4DEFF058E8F50092D2D50FA0 /* [CP] Check Pods Manifest.lock */,
+				431A0ADD19E1DB4437968714 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				2F0C454F9E2E3E6B20DB5B14 /* [CP] Embed Pods Frameworks */,
-				5C07E3DD4EC64BF966CE041E /* [CP] Copy Pods Resources */,
+				74A97AB080D006262EF50883 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -239,12 +238,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Colander_Tests" */;
 			buildPhases = (
-				82B266FA1054288E47798369 /* [CP] Check Pods Manifest.lock */,
+				B3060291EC9B55999E1EBEBE /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				8DE4B7D9D5369CFBF4404C81 /* [CP] Embed Pods Frameworks */,
-				CD14EBD41A722BB95B81E554 /* [CP] Copy Pods Resources */,
+				FB8F4F77D555BC27EAED868E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -269,11 +267,11 @@
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = WE32AWW3XR;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1020;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1020;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -283,6 +281,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -317,31 +316,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2F0C454F9E2E3E6B20DB5B14 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Colander/Colander.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-12/iOS/RevealServer.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Colander.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4DEFF058E8F50092D2D50FA0 /* [CP] Check Pods Manifest.lock */ = {
+		431A0ADD19E1DB4437968714 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -359,22 +334,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5C07E3DD4EC64BF966CE041E /* [CP] Copy Pods Resources */ = {
+		74A97AB080D006262EF50883 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Colander/Colander.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Colander.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		82B266FA1054288E47798369 /* [CP] Check Pods Manifest.lock */ = {
+		B3060291EC9B55999E1EBEBE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -392,7 +374,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DE4B7D9D5369CFBF4404C81 /* [CP] Embed Pods Frameworks */ = {
+		FB8F4F77D555BC27EAED868E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -410,21 +392,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CD14EBD41A722BB95B81E554 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -522,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -568,7 +535,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -578,41 +545,64 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AAD174CA339E5E90645876B /* Pods-Colander_Example.debug.xcconfig */;
+			baseConfigurationReference = D6F026F00D08FBFA1277A828 /* Pods-Colander_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WE32AWW3XR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Colander\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftDate\"",
+				);
 				INFOPLIST_FILE = Colander/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"Colander\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"SwiftDate\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A790538AC1E9E5D6B9ED2FC2 /* Pods-Colander_Example.release.xcconfig */;
+			baseConfigurationReference = 7294F3BA7EF1A7A9FE26D21E /* Pods-Colander_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WE32AWW3XR;
 				INFOPLIST_FILE = Colander/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56A83F39EA407F2CDFD0D53D /* Pods-Colander_Tests.debug.xcconfig */;
+			baseConfigurationReference = C6363956A69578F91E7397AB /* Pods-Colander_Tests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -626,15 +616,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Colander_Example.app/Colander_Example";
 			};
 			name = Debug;
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D1A1B8CC3CDD70797A53DF4 /* Pods-Colander_Tests.release.xcconfig */;
+			baseConfigurationReference = 6295B1EB882CCFE4E0133EEB /* Pods-Colander_Tests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -644,8 +633,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Colander_Example.app/Colander_Example";
 			};
 			name = Release;
