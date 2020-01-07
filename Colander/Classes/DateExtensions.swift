@@ -1,18 +1,26 @@
 import SwiftDate
 
-extension Calendar {
+internal extension Calendar {
     static let gregorian = Calendar(identifier: Calendar.Identifier.gregorian)
 }
 
-extension Date {
+internal extension Date {
     var beginningOfMonth: Date {
-        var firstDayOfStartMonth = Calendar.gregorian.dateComponents( [.era, .year, .month], from: self)
+        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        if let timeZone = TimeZone(secondsFromGMT: 0) {
+            calendar.timeZone = timeZone
+        }
+        var firstDayOfStartMonth = calendar.dateComponents( [.era, .year, .month], from: self)
         firstDayOfStartMonth.day = 1
-        return Calendar.gregorian.date(from: firstDayOfStartMonth) ?? Date.nowAt(.startOfMonth)
+        return calendar.date(from: firstDayOfStartMonth) ?? Date.nowAt(.startOfMonth)
     }
     
     var beginningOfWeek: Date {
-        return Calendar.gregorian.date(from: Calendar.gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) ?? Date.nowAt(.startOfWeek)
+        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        if let timeZone = TimeZone(secondsFromGMT: 0) {
+            calendar.timeZone = timeZone
+        }
+        return calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) ?? Date.nowAt(.startOfWeek)
     }
 
     var endOfWeek: Date {

@@ -57,6 +57,14 @@ class MonthInfoSpec: QuickSpec {
                 // Feburary 2017 has 28 days
                 expect(monthInfo.numberOfDaysInMonth).to(equal(29))
             }
+            
+            it("Correctly decides beginningOfMonth for startDate") {
+                // September 10, 2019
+                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2019, month: 9, day: 10))
+
+                // September 1, 2019 is a Sunday
+                expect(monthInfo.startDate.beginningOfMonth.day).to(equal(1))
+            }
         }
     }
 }
