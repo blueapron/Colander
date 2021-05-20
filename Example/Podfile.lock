@@ -1,5 +1,5 @@
 PODS:
-  - Colander (0.2.3):
+  - Colander (0.2.4):
     - SnapKit (~> 5.0.0)
     - SwiftDate (~> 6.0.3)
   - Nimble (8.0.1)
@@ -13,7 +13,7 @@ DEPENDENCIES:
   - Quick (~> 2.1.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Nimble
     - Quick
     - SnapKit
@@ -24,12 +24,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Colander: fcc5af3359a55ff63098c9d31a81156955a83c20
+  Colander: 1fdc1a3915ff17d77fb3aa3eb80614187b5892c9
   Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftDate: 8d4f14bf1ef68e95094511504856547bf9e3e1a6
 
-PODFILE CHECKSUM: 8986d9112fcd8cc93adf8e946860b85e291ba26f
+PODFILE CHECKSUM: 0978970aeaacea6c5a4013a8e8b4c44da5690fab
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.10.0

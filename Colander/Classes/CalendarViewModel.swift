@@ -37,7 +37,7 @@ class CalendarViewModel {
     }
 
     static func makeMonthInfos(startDate: Date, endDate: Date, calendar: Calendar) throws -> [MonthInfo] {
-        let monthStartDate = startDate.beginningOfMonth
+        let monthStartDate = startDate.dateAtStartOf(.month)
         let sections = (0..<(numberOfSectionsNeededFor(startDate: startDate, endDate: endDate)))
         return try sections.map { try MonthInfo(forMonthContaining: monthStartDate + $0.months, with: calendar) }
     }
@@ -53,7 +53,7 @@ class CalendarViewModel {
         self.showLeadingWeeks = showLeadingWeeks
         self.showTrailingWeeks = showTrailingWeeks
         self.calendar = calendar
-        SwiftDate.defaultRegion = Region(calendar: calendar, zone: TimeZone.current, locale: Locale.current)
+        SwiftDate.defaultRegion = Region(calendar: calendar, zone: calendar.timeZone, locale: calendar.locale ?? Locale.current)
         self.monthInfos = try CalendarViewModel.makeMonthInfos(startDate: startDate, endDate: endDate, calendar: calendar)
     }
 
@@ -72,8 +72,9 @@ class CalendarViewModel {
         }
         let zeroIndexDate = firstDisplayDate(for: section, showLeadingWeeks: showLeadingWeeks)
         // 1 hour is added to make this calculation correct for the beginning of Daylight Saving Time. I don't like it either.
-        let intervalDiff = (date + 1.hours) - zeroIndexDate
-        return IndexPath(item: intervalDiff.in(.day) ?? 0, section: section)
+        let dayCount = Date.enumerateDates(from: zeroIndexDate, to: date.dateAtStartOf(.day) + 1.hours,
+                                           increment: DateComponents(day: 1)).count - 1
+        return IndexPath(item: dayCount, section: section)
     }
 
     func firstDisplayDate(for section: Int, showLeadingWeeks: Bool) -> Date {
@@ -81,7 +82,7 @@ class CalendarViewModel {
         // usually (but not always) before the start of the month if leading weeks are being shown
         let monthInfo = monthInfos[section]
         let isFirstMonth = section == 0
-        return (!showLeadingWeeks && isFirstMonth) ? startDate.beginningOfWeek : monthInfo.startDate.beginningOfWeek
+        return (!showLeadingWeeks && isFirstMonth) ? startDate.dateAtStartOf(.weekOfMonth).date : monthInfo.startDate.dateAtStartOf(.weekOfMonth).date
     }
 
      /**
@@ -115,8 +116,8 @@ class CalendarViewModel {
         let isLastMonth = section == monthInfos.count - 1
         if !showTrailingWeeks && isLastMonth {
             // Determine whether the last day to display will change by trimming trailing weeks
-            let dayDifference = (monthInfo.endDate - endDate.endOfWeek).in(.day) ?? 0
-            lastDisplayIndex -= (dayDifference - 1)
+            let dayDifference = (monthInfo.endDate.date - endDate.dateAtEndOf(.weekOfMonth)).in(.day) ?? 0
+            lastDisplayIndex -= dayDifference
         }
 
         let requiredRows = ceil(Double(lastDisplayIndex + 1) / Double(daysPerWeek))

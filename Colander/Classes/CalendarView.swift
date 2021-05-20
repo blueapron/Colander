@@ -2,7 +2,7 @@ import SnapKit
 import SwiftDate
 import UIKit
 
-public protocol CalendarViewDataSource: class {
+public protocol CalendarViewDataSource: AnyObject {
     var calendar: Calendar { get }
     var startDate: Date { get }
     var endDate: Date { get }
@@ -24,7 +24,7 @@ public extension CalendarViewDataSource {
     }
 }
 
-public protocol CalendarViewDelegate: class {
+public protocol CalendarViewDelegate: AnyObject {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     func calendar(_ calendar: CalendarView, shouldSelectCellAt date: Date) -> Bool
     func calendar(_ calendar: CalendarView, didSelectCell cell: UICollectionViewCell, forDate date: Date)
@@ -302,7 +302,7 @@ extension CalendarView: UICollectionViewDataSource {
         }
 
         if let currentMonthInfo = viewModel?.monthInfos[indexPath.section], var headerView = headerView as? Dated {
-            headerView.date = currentMonthInfo.startDate
+            headerView.date = currentMonthInfo.startDate.date
         }
 
         return headerView
