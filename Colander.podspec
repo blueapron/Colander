@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Colander'
-  s.version          = '0.2.4'
+  s.version          = '0.2.5'
   s.summary          = 'A highly customizable iOS calendar view'
 
   s.description      = <<-DESC
@@ -17,10 +17,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
   s.swift_version = '5.0'
 
-
   s.source_files = 'Colander/Classes/**/*'
 
-  s.dependency 'SnapKit', '~> 5.0.0'
-  s.dependency 'SwiftDate', '~> 6.0.3'
+  s.dependency 'SnapKit', '~> 5.0.1'
+  s.dependency 'SwiftDate', '~> 6.3.1'
 
 end

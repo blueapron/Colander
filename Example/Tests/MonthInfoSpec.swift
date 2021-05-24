@@ -16,7 +16,7 @@ class MonthInfoSpec: QuickSpec {
         describe("init") {
             it("Correctly decides firstDayWeekdayIndex and number of days for a 31-day month") {
                 // Today
-                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2017, month: 8, day: 4))
+                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2017, month: 8, day: 4), with: .gregorian)
 
                 // August 1, 2017 is a Tuesday
                 expect(monthInfo.firstDayWeekdayIndex).to(equal(2))
@@ -27,7 +27,7 @@ class MonthInfoSpec: QuickSpec {
 
             it("Correctly decides firstDayWeekdayIndex and number of days for a 30-day month") {
                 // June 25, 2017
-                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2017, month: 6, day: 25))
+                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2017, month: 6, day: 25), with: .gregorian)
 
                 // Juen 1, 2017 is a Thursday
                 expect(monthInfo.firstDayWeekdayIndex).to(equal(4))
@@ -38,7 +38,7 @@ class MonthInfoSpec: QuickSpec {
 
             it("Correctly decides firstDayWeekdayIndex and number of days for a normal February") {
                 // February 10, 2017
-                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2017, month: 2, day: 10))
+                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2017, month: 2, day: 10), with: .gregorian)
 
                 // February 1, 2017 is a Tuesday
                 expect(monthInfo.firstDayWeekdayIndex).to(equal(3))
@@ -49,7 +49,7 @@ class MonthInfoSpec: QuickSpec {
 
             it("Correctly decides firstDayWeekdayIndex and number of days for a leap year February") {
                 // February 14, 2016
-                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2016, month: 2, day: 14))
+                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2016, month: 2, day: 14), with: .gregorian)
 
                 // February 1, 2016 is a Monday
                 expect(monthInfo.firstDayWeekdayIndex).to(equal(1))
@@ -60,10 +60,10 @@ class MonthInfoSpec: QuickSpec {
             
             it("Correctly decides beginningOfMonth for startDate") {
                 // September 10, 2019
-                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2019, month: 9, day: 10))
+                let monthInfo = try! MonthInfo(forMonthContaining: Date.mockDateFrom(year: 2019, month: 9, day: 10), with: .gregorian)
 
                 // September 1, 2019 is a Sunday
-                expect(monthInfo.startDate.beginningOfMonth.day).to(equal(1))
+                expect(monthInfo.startDate.dateAtStartOf(.month).day).to(equal(1))
             }
         }
     }

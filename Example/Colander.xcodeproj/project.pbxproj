@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1089385E523011FABC5B870B /* Colander.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Colander.podspec; path = ../Colander.podspec; sourceTree = "<group>"; };
+		1089385E523011FABC5B870B /* Colander.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Colander.podspec; path = ../Colander.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1939F3CCD64571E5E090650F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		3E2AE24330433B58DE569374 /* Pods_Colander_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Colander_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* Colander_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colander_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -340,7 +340,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Colander/Colander.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
@@ -353,7 +353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Colander_Example/Pods-Colander_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B3060291EC9B55999E1EBEBE /* [CP] Check Pods Manifest.lock */ = {
@@ -380,7 +380,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
@@ -391,7 +391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Colander_Tests/Pods-Colander_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

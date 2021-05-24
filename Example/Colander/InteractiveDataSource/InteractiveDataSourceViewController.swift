@@ -25,37 +25,18 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
 
     let calendarView = CalendarView()
 
-    lazy var startDateTextField: UITextField = {
-        let textField = UITextField()
-        textField.inputAccessoryView = self.toolbar
-        textField.inputView = self.datePicker
-        textField.textColor = .blue
-        textField.delegate = self
-        return textField
-    }()
-    
-    lazy var endDateTextField: UITextField = {
-        let textField = UITextField()
-        textField.inputAccessoryView = self.toolbar
-        textField.inputView = self.datePicker
-        textField.textColor = .blue
-        textField.delegate = self
-        return textField
-    }()
-
-    lazy var datePicker: UIDatePicker = {
+    lazy var startDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(picker:)), for: .valueChanged)
         return datePicker
     }()
 
-    let toolbar: UIToolbar = {
-        let toolbar = UIToolbar()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
-        toolbar.setItems([doneButton], animated: false)
-        toolbar.sizeToFit()
-        return toolbar
+    lazy var endDatePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(picker:)), for: .valueChanged)
+        return datePicker
     }()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -83,7 +64,12 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
 
         view.addSubview(configContainerView)
         configContainerView.snp.makeConstraints { make in
-            make.left.bottom.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            if #available(iOS 11.0, *) {
+                make.bottom.equalTo(view.safeAreaLayoutGuide)
+            } else {
+                make.bottom.equalToSuperview()
+            }
         }
 
         calendarView.register(cellType: SpecializedDayCell.self)
@@ -95,7 +81,7 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
         }
         calendarView.dataSource = self
 
-        updateTextFieldText()
+        updateDatePickers()
     }
 
     func createConfigView() -> UIView {
@@ -122,9 +108,9 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
         view.addSubview(leadingWeeksLabel)
         view.addSubview(trailingWeeksSwitch)
         view.addSubview(trailingWeeksLabel)
-        view.addSubview(startDateTextField)
+        view.addSubview(startDatePicker)
         view.addSubview(toLabel)
-        view.addSubview(endDateTextField)
+        view.addSubview(endDatePicker)
 
         leadingWeeksLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(16)
@@ -147,42 +133,39 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
             make.top.equalToSuperview()
         }
 
-        startDateTextField.snp.makeConstraints { make in
+        startDatePicker.snp.makeConstraints { make in
             make.top.equalTo(leadingWeeksSwitch.snp.bottom).offset(20)
             make.left.bottom.equalToSuperview().inset(16)
+            make.height.equalTo(40)
         }
 
         toLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalTo(startDateTextField)
+            make.centerY.equalTo(startDatePicker)
         }
 
-        endDateTextField.snp.makeConstraints { make in
+        endDatePicker.snp.makeConstraints { make in
             make.right.bottom.equalToSuperview().inset(16)
+            make.height.equalTo(40)
         }
         
         return view
     }
 
-    func updateTextFieldText() {
-        startDateTextField.text = dateFormatter.string(from: startDate)
-        endDateTextField.text = dateFormatter.string(from: endDate)
+    func updateDatePickers() {
+        startDatePicker.date = startDate
+        endDatePicker.date = endDate
     }
 
-    @objc func datePickerValueChanged() {
-        print("date picker date is now \(datePicker.date)")
-    }
-
-    @objc func doneButtonTapped() {
-        if startDateTextField.isFirstResponder {
-            startDate = datePicker.date
-            startDateTextField.resignFirstResponder()
-        } else if endDateTextField.isFirstResponder {
-            endDate = datePicker.date
-            endDateTextField.resignFirstResponder()
+    @objc func datePickerValueChanged(picker: UIDatePicker) {
+        if picker == startDatePicker {
+            print("start date picker date is now \(startDatePicker.date)")
+            startDate = picker.date
+        } else if picker == endDatePicker {
+            print("end date picker date is now \(endDatePicker.date)")
+            endDate = picker.date
         }
         calendarView.reloadData()
-        updateTextFieldText()
     }
 
     @objc func leadingWeeksToggled(sender: UISwitch) {
@@ -193,14 +176,5 @@ class InteractiveDataSourceViewController: UIViewController, CalendarViewDataSou
     @objc func trailingWeeksToggled(sender: UISwitch) {
         showTrailingWeeks = sender.isOn
         calendarView.reloadData()
-    }
-}
-
-extension InteractiveDataSourceViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if let date = dateFormatter.date(from: textField.text!) {
-            datePicker.date = date
-        }
-        return true
     }
 }

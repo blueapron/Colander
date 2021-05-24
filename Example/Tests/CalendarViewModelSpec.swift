@@ -19,7 +19,7 @@ class CalendarViewModelSpec: QuickSpec {
                 let endDate = startDate + 1.weeks
                 let subject = try! CalendarViewModel(startDate: startDate, endDate: endDate)
                 expect(subject.monthInfos.count).to(equal(1))
-                let mockMonthInfo = try! MonthInfo(forMonthContaining: startDate)
+                let mockMonthInfo = try! MonthInfo(forMonthContaining: startDate, with: .gregorian)
                 let monthInfo = subject.monthInfos.first!
                 expect(monthInfo.startDate).to(equal(mockMonthInfo.startDate))
                 expect(monthInfo.numberOfDaysInMonth).to(equal(mockMonthInfo.numberOfDaysInMonth))
@@ -33,7 +33,7 @@ class CalendarViewModelSpec: QuickSpec {
                 let subject = try CalendarViewModel(startDate: startDate, endDate: endDate)
                 expect(subject.monthInfos.count).to(equal(expectedCount))
                 for (i, monthInfo) in subject.monthInfos.enumerated() {
-                    let mockMonthInfo = try! MonthInfo(forMonthContaining: startDate + i.months)
+                    let mockMonthInfo = try! MonthInfo(forMonthContaining: startDate + i.months, with: .gregorian)
                     expect(monthInfo.startDate).to(equal(mockMonthInfo.startDate))
                     expect(monthInfo.numberOfDaysInMonth).to(equal(mockMonthInfo.numberOfDaysInMonth))
                 }
