@@ -6,7 +6,8 @@
 //  Copyright © 2017 Blue Apron. All rights reserved.
 //
 
-import Foundation
+#if canImport(UIKit)
+
 import SwiftDate
 
 enum DateError: Error {
@@ -137,3 +138,5 @@ class CalendarViewModel {
         return dates
     }
 }
+
+#endif

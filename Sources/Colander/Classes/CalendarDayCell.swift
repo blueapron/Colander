@@ -1,3 +1,5 @@
+#if canImport(UIKit)
+
 open class CalendarDayCell: UICollectionViewCell, Dated, DateFormatting {
     public let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -39,3 +41,5 @@ open class CalendarDayCell: UICollectionViewCell, Dated, DateFormatting {
         date = nil
     }
 }
+
+#endif

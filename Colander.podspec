@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Colander'
-  s.version          = '0.2.5'
+  s.version          = '0.3.0'
   s.summary          = 'A highly customizable iOS calendar view'
 
   s.description      = <<-DESC
@@ -14,12 +14,12 @@ Pod::Spec.new do |s|
   s.author           = { 'Bryan Oltman' => 'bryan.oltman@blueapron.com' }
   s.source           = { :git => 'https://github.com/blueapron/Colander.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '10.0'
-  s.swift_version = '5.0'
+  s.ios.deployment_target = '12.0'
+  s.swift_version = '5.7'
 
-  s.source_files = 'Colander/Classes/**/*'
+  s.source_files = 'Sources/Colander/Classes/**/*'
 
-  s.dependency 'SnapKit', '~> 5.0.1'
-  s.dependency 'SwiftDate', '~> 6.3.1'
+  s.dependency 'SnapKit', '~> 5.6.0'
+  s.dependency 'SwiftDate', '~> 7.0.0'
 
 end
