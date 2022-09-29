@@ -1,5 +1,6 @@
 #if canImport(UIKit)
 
+import Foundation
 import SwiftDate
 
 internal extension Calendar {
