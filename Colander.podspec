@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.author           = { 'Bryan Oltman' => 'bryan.oltman@blueapron.com' }
   s.source           = { :git => 'https://github.com/blueapron/Colander.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '13.0'
   s.swift_version = '5.7'
 
   s.source_files = 'Sources/Colander/Classes/**/*'
