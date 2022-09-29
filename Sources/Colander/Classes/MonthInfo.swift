@@ -8,6 +8,7 @@
 
 #if canImport(UIKit)
 
+import Foundation
 import SwiftDate
 
 struct MonthInfo {
