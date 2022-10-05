@@ -1,6 +1,8 @@
+#if canImport(UIKit)
+
+import UIKit
 import SnapKit
 import SwiftDate
-import UIKit
 
 public protocol CalendarViewDataSource: AnyObject {
     var calendar: Calendar { get }
@@ -336,3 +338,5 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
         delegate?.calendar(self, didDeselectCell: cell, forDate: date)
     }
 }
+
+#endif

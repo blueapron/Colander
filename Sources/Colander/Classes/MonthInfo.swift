@@ -6,6 +6,8 @@
 //  Copyright © 2017 Blue Apron. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import Foundation
 import SwiftDate
 
@@ -23,3 +25,5 @@ struct MonthInfo {
         self.numberOfDaysInMonth = date.monthDays
     }
 }
+
+#endif

@@ -6,6 +6,8 @@
 //  Copyright © 2017 Blue Apron. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import Foundation
 import SwiftDate
 
@@ -137,3 +139,5 @@ class CalendarViewModel {
         return dates
     }
 }
+
+#endif
